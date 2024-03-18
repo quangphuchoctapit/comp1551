@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Account\AccountDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ExtensionWinform\ChoosingSalaryModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Class\AddClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Class\ClassDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ExtensionWinform\Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ExtensionWinform\StudentSignup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ExtensionWinform\Subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ExtensionWinform\TeacherSignup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Faculty\AddFaculty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Faculty\FacultyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Salary\AddSalaryTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Salary\SalaryAdminDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Salary\SalaryTeacherDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Signup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\AddStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\StudentDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Subject\AddSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Subject\SubjectDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Teacher\AddTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Teacher\TeacherDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UserDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,99 @@
+﻿namespace comp1551.ExtensionWinform
+{
+    partial class Setting
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            label1 = new Label();
+            btnAccount = new Button();
+            btnSubject = new Button();
+            btnLogout = new Button();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(183, 47);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 38);
+            label1.TabIndex = 0;
+            label1.Text = "SETTING";
+            // 
+            // btnAccount
+            // 
+            btnAccount.Location = new Point(101, 121);
+            btnAccount.Name = "btnAccount";
+            btnAccount.Size = new Size(287, 79);
+            btnAccount.TabIndex = 1;
+            btnAccount.Text = "Account";
+            btnAccount.UseVisualStyleBackColor = true;
+            btnAccount.Click += btnAccount_Click;
+            // 
+            // btnSubject
+            // 
+            btnSubject.Location = new Point(101, 226);
+            btnSubject.Name = "btnSubject";
+            btnSubject.Size = new Size(287, 79);
+            btnSubject.TabIndex = 2;
+            btnSubject.Text = "My Subjects";
+            btnSubject.UseVisualStyleBackColor = true;
+            btnSubject.Click += btnSubject_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(101, 333);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(287, 79);
+            btnLogout.TabIndex = 3;
+            btnLogout.Text = "Log Out";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // Setting
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(490, 450);
+            Controls.Add(btnLogout);
+            Controls.Add(btnSubject);
+            Controls.Add(btnAccount);
+            Controls.Add(label1);
+            Name = "Setting";
+            Text = "Setting";
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label label1;
+        private Button btnAccount;
+        private Button btnSubject;
+        private Button btnLogout;
+    }
+}
