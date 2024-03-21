@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalaryTeacherDetails));
             tableSalary = new DataGridView();
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
             btnSearchSalary = new Button();
             txtSearchSalary = new TextBox();
             lblSearchSalary = new Label();
@@ -39,7 +38,6 @@
             btnAddSalary = new Button();
             ((System.ComponentModel.ISupportInitialize)tableSalary).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tableSalary
@@ -56,7 +54,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnSearchSalary);
             panel1.Controls.Add(txtSearchSalary);
             panel1.Controls.Add(lblSearchSalary);
@@ -68,19 +65,10 @@
             panel1.Size = new Size(735, 98);
             panel1.TabIndex = 3;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(680, 40);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
             // btnSearchSalary
             // 
+            btnSearchSalary.BackgroundImage = (Image)resources.GetObject("btnSearchSalary.BackgroundImage");
+            btnSearchSalary.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearchSalary.Location = new Point(670, 30);
             btnSearchSalary.Name = "btnSearchSalary";
             btnSearchSalary.Size = new Size(40, 40);
@@ -136,7 +124,6 @@
             ((System.ComponentModel.ISupportInitialize)tableSalary).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -144,7 +131,6 @@
 
         private DataGridView tableSalary;
         private Panel panel1;
-        private PictureBox pictureBox1;
         private Button btnSearchSalary;
         private TextBox txtSearchSalary;
         private Label lblSearchSalary;

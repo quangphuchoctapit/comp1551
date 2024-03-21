@@ -1,4 +1,7 @@
-﻿using System;
+﻿using comp1551.ExtensionWinform;
+using Mysqlx.Datatypes;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace comp1551
@@ -6,13 +9,35 @@ namespace comp1551
     // derived class representing teacher
     public class TeacherClass : UserClass
     {
-        public decimal Salary { get; set; }
-        public string Subject1 { get; set; }
-        public string Subject2 { get; set; }
-        public string FacultyName { get; set; }
-        public int FacultyId { get; set; }
-        public string Qualifications { get; set; }
-        public string Image { get; set; }
+        private decimal Salary { get; set; }
+        private string Subject1 { get; set; }
+        private string Subject2 { get; set; }
+        private string FacultyName { get; set; }
+        private int FacultyId { get; set; }
+        private string Qualifications { get; set; }
+        private string Image { get; set; }
+
+        // Accessor methods
+        public decimal GetSalary() => Salary;
+        public void SetSalary(decimal salary) => Salary = salary;
+
+        public string GetSubject1() => Subject1;
+        public void SetSubject1(string subject1) => Subject1 = subject1;
+
+        public string GetSubject2() => Subject2;
+        public void SetSubject2(string subject2) => Subject2 = subject2;
+
+        public string GetFacultyName() => FacultyName;
+        public void SetFacultyName(string facultyName) => FacultyName = facultyName;
+
+        public int GetFacultyId() => FacultyId;
+        public void SetFacultyId(int facultyId) => FacultyId = facultyId;
+
+        public string GetQualifications() => Qualifications;
+        public void SetQualifications(string qualifications) => Qualifications = qualifications;
+
+        public string GetImage() => Image;
+        public void SetImage(string image) => Image = image;
     }
 
     public class TeacherManage
@@ -43,9 +68,9 @@ namespace comp1551
 
                 // Convert the image to a Base64 string
                 string base64Image = "";
-                if (!string.IsNullOrEmpty(teacher.Image))
+                if (!string.IsNullOrEmpty(teacher.GetImage()))
                 {
-                    base64Image = teacher.Image;
+                    base64Image = teacher.GetImage();
                 }
 
                 // insert new user into the database with the role 'teacher'
@@ -60,7 +85,7 @@ namespace comp1551
                 int userId = database.GetUserId(getUserIdQuery);
 
                 string insertTeacherQuery = $"INSERT INTO Teacher (Qualifications, FacultyId, UserId, Salary, Subject1, Subject2) " +
-                    $"VALUES ('{teacher.Qualifications}',  {teacher.FacultyId}, {userId}, '{teacher.Salary}', '{teacher.Subject1}', '{teacher.Subject2}')";
+                    $"VALUES ('{teacher.GetQualifications()}',  {teacher.GetFacultyId()}, {userId}, '{teacher.GetSalary()}', '{teacher.GetSubject1()}', '{teacher.GetSubject2()}')";
 
                 // execute the insert query for the teacher
                 database.ExecuteNonQuery(insertTeacherQuery);
@@ -85,14 +110,14 @@ namespace comp1551
                 // update the user information
                 string updateQueryUser = $"UPDATE User SET Name = '{updatedTeacher.Name}', " +
                     $"Email = '{updatedTeacher.Email}', Telephone = '{updatedTeacher.Telephone}', " +
-                    $"Image = '{updatedTeacher.Image}' " +
+                    $"Image = '{updatedTeacher.GetImage()}' " +
                     $"WHERE Id = {id}";
 
                 // update the teacher information
-                string updateQueryTeacher = $"UPDATE Teacher SET Subject1 = '{updatedTeacher.Subject1}', " +
-                    $"Subject2 = '{updatedTeacher.Subject2}', " +
-                    $"Qualifications = '{updatedTeacher.Qualifications}', " +
-                    $"FacultyId = '{updatedTeacher.FacultyId}' " +
+                string updateQueryTeacher = $"UPDATE Teacher SET Subject1 = '{updatedTeacher.GetSubject1()}', " +
+                    $"Subject2 = '{updatedTeacher.GetSubject2()}', " +
+                    $"Qualifications = '{updatedTeacher.GetQualifications()}', " +
+                    $"FacultyId = '{updatedTeacher.GetFacultyId()}' " +
                     $"WHERE UserId = {id}";
 
                 // execute the update queries
@@ -143,13 +168,15 @@ namespace comp1551
                         Id = Convert.ToInt32(row["Id"]),
                         Name = row["Name"].ToString(),
                         Email = row["Email"].ToString(),
-                        Telephone = row["Telephone"].ToString(),
-                        FacultyName = row["FacultyName"].ToString(),
-                        Salary = Convert.ToDecimal(row["Salary"]),
-                        Qualifications = row["Qualifications"].ToString(),
-                        Subject1 = row["Subject1"].ToString(),
-                        Subject2 = row["Subject2"].ToString()
+                        Telephone = row["Telephone"].ToString()
                     };
+
+                    teacher.SetFacultyName(row["FacultyName"].ToString());
+                    teacher.SetSalary(Convert.ToDecimal(row["Salary"]));
+                    teacher.SetQualifications(row["Qualifications"].ToString());
+                    teacher.SetSubject1(row["Subject1"].ToString());
+                    teacher.SetSubject2(row["Subject2"].ToString());
+
                     teachers.Add(teacher);
                 }
             }
@@ -190,15 +217,18 @@ namespace comp1551
                         Id = Convert.ToInt32(row["Id"]),
                         Name = row["Name"].ToString(),
                         Email = row["Email"].ToString(),
-                        Telephone = row["Telephone"].ToString(),
-                        Salary = Convert.ToDecimal(row["Salary"]),
-                        FacultyName = row["FacultyName"].ToString(),
-                        Qualifications = row["Qualifications"].ToString(),
-                        Subject1 = row["Subject1"].ToString(),
-                        Subject2 = row["Subject2"].ToString()
+                        Telephone = row["Telephone"].ToString()
                     };
+
+                    teacher.SetSalary(Convert.ToDecimal(row["Salary"]));
+                    teacher.SetFacultyName(row["FacultyName"].ToString());
+                    teacher.SetQualifications(row["Qualifications"].ToString());
+                    teacher.SetSubject1(row["Subject1"].ToString());
+                    teacher.SetSubject2(row["Subject2"].ToString());
+
                     teachers.Add(teacher);
                 }
+
             }
             catch (Exception ex)
             {
@@ -271,7 +301,5 @@ namespace comp1551
 
             return subjects;
         }
-
-
     }
 }

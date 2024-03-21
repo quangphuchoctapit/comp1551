@@ -31,16 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassDetails));
             tableClass = new DataGridView();
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
             btnSearchClass = new Button();
             txtSearchClass = new TextBox();
             lblSearchClass = new Label();
             btnDeleteClass = new Button();
             btnEditClass = new Button();
             btnAddClass = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)tableClass).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tableClass
@@ -49,7 +48,7 @@
             tableClass.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableClass.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableClass.Dock = DockStyle.Bottom;
-            tableClass.Location = new Point(0, 125);
+            tableClass.Location = new Point(0, 159);
             tableClass.Name = "tableClass";
             tableClass.RowHeadersWidth = 62;
             tableClass.Size = new Size(880, 325);
@@ -57,33 +56,22 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnSearchClass);
             panel1.Controls.Add(txtSearchClass);
             panel1.Controls.Add(lblSearchClass);
             panel1.Controls.Add(btnDeleteClass);
             panel1.Controls.Add(btnEditClass);
             panel1.Controls.Add(btnAddClass);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 61);
             panel1.Name = "panel1";
             panel1.Size = new Size(880, 98);
             panel1.TabIndex = 1;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(839, 43);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
-            // 
             // btnSearchClass
             // 
+            btnSearchClass.BackgroundImage = (Image)resources.GetObject("btnSearchClass.BackgroundImage");
+            btnSearchClass.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearchClass.Location = new Point(829, 33);
             btnSearchClass.Name = "btnSearchClass";
             btnSearchClass.Size = new Size(40, 40);
@@ -137,13 +125,26 @@
             btnAddClass.UseVisualStyleBackColor = true;
             btnAddClass.Click += btnAddClass_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(399, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(94, 45);
+            label1.TabIndex = 2;
+            label1.Text = "Class";
+            // 
             // ClassDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(880, 450);
+            ClientSize = new Size(880, 484);
+            ControlBox = false;
+            Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(tableClass);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ClassDetails";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClassDetails";
@@ -151,8 +152,8 @@
             ((System.ComponentModel.ISupportInitialize)tableClass).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -165,6 +166,6 @@
         private Button btnSearchClass;
         private TextBox txtSearchClass;
         private Label lblSearchClass;
-        private PictureBox pictureBox1;
+        private Label label1;
     }
 }

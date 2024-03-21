@@ -256,6 +256,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 551);
+            ControlBox = false;
             Controls.Add(comboBoxAccountFullTime);
             Controls.Add(txtAccountWorkingHours);
             Controls.Add(label10);
@@ -279,6 +280,7 @@
             Controls.Add(txtAccountRole);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "AccountDetails";
             Text = "AccountDetails";
             Load += AccountDetails_Load;

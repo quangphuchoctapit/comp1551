@@ -53,3 +53,11 @@ C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.E
 C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.ExtensionWinform.TeacherSignup.resources
 C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.ExtensionWinform.Subjects.resources
 C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.User.UserDetails.resources
+C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.sourcelink.json
+C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.Main.resources
+C:\Users\ASUS\source\repos\comp1551\comp1551\bin\Debug\net8.0-windows\aa-DJ\comp1551.resources.dll
+C:\Users\ASUS\source\repos\comp1551\comp1551\bin\Debug\net8.0-windows\en-AS\comp1551.resources.dll
+C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.Student.StudentDetails.aa-DJ.resources
+C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\comp1551.Student.StudentDetails.en-AS.resources
+C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\aa-DJ\comp1551.resources.dll
+C:\Users\ASUS\source\repos\comp1551\comp1551\obj\Debug\net8.0-windows\en-AS\comp1551.resources.dll

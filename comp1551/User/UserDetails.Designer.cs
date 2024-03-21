@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDetails));
             panel1 = new Panel();
             comboBoxFilter = new ComboBox();
-            pictureBox1 = new PictureBox();
             btnSearchUser = new Button();
             txtSearchUser = new TextBox();
             lblSearchClass = new Label();
@@ -40,14 +39,12 @@
             btnAddUser = new Button();
             tableUser = new DataGridView();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tableUser).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Controls.Add(comboBoxFilter);
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnSearchUser);
             panel1.Controls.Add(txtSearchUser);
             panel1.Controls.Add(lblSearchClass);
@@ -69,24 +66,16 @@
             comboBoxFilter.TabIndex = 4;
             comboBoxFilter.SelectedIndexChanged += comboBoxFilter_SelectedIndexChanged;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1016, 43);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
             // btnSearchUser
             // 
+            btnSearchUser.BackColor = Color.White;
+            btnSearchUser.BackgroundImage = (Image)resources.GetObject("btnSearchUser.BackgroundImage");
+            btnSearchUser.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearchUser.Location = new Point(1006, 33);
             btnSearchUser.Name = "btnSearchUser";
             btnSearchUser.Size = new Size(40, 40);
             btnSearchUser.TabIndex = 3;
-            btnSearchUser.UseVisualStyleBackColor = true;
+            btnSearchUser.UseVisualStyleBackColor = false;
             btnSearchUser.Click += btnSearchUser_Click;
             // 
             // txtSearchUser
@@ -157,7 +146,6 @@
             Load += UserDetails_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)tableUser).EndInit();
             ResumeLayout(false);
         }
@@ -165,7 +153,6 @@
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox1;
         private Button btnSearchUser;
         private TextBox txtSearchUser;
         private Label lblSearchClass;

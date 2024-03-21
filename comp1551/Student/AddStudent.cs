@@ -232,14 +232,17 @@ namespace comp1551.Student
                             Name = txtAddStudentName.Text,
                             Email = txtAddStudentEmail.Text,
                             Telephone = txtAddStudentTelephone.Text,
-                            Image = base64Image, // use the base64Image that we have possibly converted above.
-                            PreviousSubject1 = txtAddStudentPrevSubject1.Text,
-                            PreviousSubject2 = txtAddStudentPrevSubject2.Text,
-                            CurrentSubject1 = txtAddStudentSubject1.Text,
-                            CurrentSubject2 = txtAddStudentSubject2.Text,
-                            FacultyId = selectedFaculty.Key,
-                            ClassId = selectedClass.Key,
                         };
+                        newStudent.SetImage(base64Image);
+
+                        // Set values using setter methods
+                        newStudent.SetPreviousSubject1(txtAddStudentPrevSubject1.Text);
+                        newStudent.SetPreviousSubject2(txtAddStudentPrevSubject2.Text);
+                        newStudent.SetCurrentSubject1(txtAddStudentSubject1.Text);
+                        newStudent.SetCurrentSubject2(txtAddStudentSubject2.Text);
+                        newStudent.SetFacultyId(selectedFaculty.Key);
+                        newStudent.SetClassId(selectedClass.Key);
+
 
                         // assuming you have a method to add a student in your system, it's called here.
                         UoGSystem system = new UoGSystem();
@@ -285,14 +288,17 @@ namespace comp1551.Student
                             Name = txtAddStudentName.Text,
                             Email = txtAddStudentEmail.Text,
                             Telephone = txtAddStudentTelephone.Text,
-                            Image = base64Image,
-                            PreviousSubject1 = txtAddStudentPrevSubject1.Text,
-                            PreviousSubject2 = txtAddStudentPrevSubject2.Text,
-                            CurrentSubject1 = txtAddStudentSubject1.Text,
-                            CurrentSubject2 = txtAddStudentSubject2.Text,
-                            FacultyId = selectedFaculty.Key,
-                            ClassId = selectedClass.Key,
                         };
+                        updatedStudent.SetImage(base64Image);
+
+                        // Set values using setter methods
+                        updatedStudent.SetPreviousSubject1(txtAddStudentPrevSubject1.Text);
+                        updatedStudent.SetPreviousSubject2(txtAddStudentPrevSubject2.Text);
+                        updatedStudent.SetCurrentSubject1(txtAddStudentSubject1.Text);
+                        updatedStudent.SetCurrentSubject2(txtAddStudentSubject2.Text);
+                        updatedStudent.SetFacultyId(selectedFaculty.Key);
+                        updatedStudent.SetClassId(selectedClass.Key);
+
 
                         // Assuming you have a method to update a student in your system, it's called here.
                         UoGSystem system = new UoGSystem();

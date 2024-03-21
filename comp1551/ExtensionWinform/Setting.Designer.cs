@@ -38,7 +38,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(183, 47);
+            label1.Location = new Point(319, 22);
             label1.Name = "label1";
             label1.Size = new Size(132, 38);
             label1.TabIndex = 0;
@@ -46,9 +46,9 @@
             // 
             // btnAccount
             // 
-            btnAccount.Location = new Point(101, 121);
+            btnAccount.Location = new Point(187, 75);
             btnAccount.Name = "btnAccount";
-            btnAccount.Size = new Size(287, 79);
+            btnAccount.Size = new Size(400, 100);
             btnAccount.TabIndex = 1;
             btnAccount.Text = "Account";
             btnAccount.UseVisualStyleBackColor = true;
@@ -56,9 +56,9 @@
             // 
             // btnSubject
             // 
-            btnSubject.Location = new Point(101, 226);
+            btnSubject.Location = new Point(187, 204);
             btnSubject.Name = "btnSubject";
-            btnSubject.Size = new Size(287, 79);
+            btnSubject.Size = new Size(400, 100);
             btnSubject.TabIndex = 2;
             btnSubject.Text = "My Subjects";
             btnSubject.UseVisualStyleBackColor = true;
@@ -66,9 +66,9 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(101, 333);
+            btnLogout.Location = new Point(187, 332);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(287, 79);
+            btnLogout.Size = new Size(400, 100);
             btnLogout.TabIndex = 3;
             btnLogout.Text = "Log Out";
             btnLogout.UseVisualStyleBackColor = true;
@@ -78,11 +78,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(490, 450);
+            ClientSize = new Size(786, 450);
+            ControlBox = false;
             Controls.Add(btnLogout);
             Controls.Add(btnSubject);
             Controls.Add(btnAccount);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Setting";
             Text = "Setting";
             ResumeLayout(false);

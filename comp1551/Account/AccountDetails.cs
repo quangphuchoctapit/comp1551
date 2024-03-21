@@ -138,10 +138,10 @@ namespace comp1551.Account
                         Email = txtAccountEmail.Text,
                         Telephone = txtAccountTelephone.Text,
                         Password = txtAccountPassword.Text,
-                        Salary = Convert.ToDecimal(txtAccountSalary.Text),
-                        WorkingHours = Convert.ToInt32(txtAccountWorkingHours.Text),
-                        FullTime = comboBoxAccountFullTime.SelectedItem.ToString() == "Yes"
                     };
+                    updatedAdmin.SetSalary(Convert.ToDecimal(txtAccountSalary.Text));
+                    updatedAdmin.SetWorkingHours(Convert.ToInt32(txtAccountWorkingHours.Text));
+                    updatedAdmin.SetFullTime(comboBoxAccountFullTime.SelectedItem.ToString() == "Yes");
 
                     system.AdminManage.UpdateAdmin(GlobalVariables.UserId, updatedAdmin);
                     MessageBox.Show("Account updated successfully.");

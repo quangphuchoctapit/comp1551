@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mysqlx.Datatypes;
+using System;
 using System.Data;
 
 namespace comp1551
@@ -6,10 +7,17 @@ namespace comp1551
     // derived class representing admin
     public class AdminClass : UserClass
     {
-        public decimal Salary { get; set; }
-        public bool FullTime { get; set; }
-        public int WorkingHours { get; set; }
+        private decimal Salary { get; set; }
+        private bool FullTime { get; set; }
+        private int WorkingHours { get; set; }
+        public decimal GetSalary() => Salary;
+        public void SetSalary(decimal value) => Salary = value;
 
+        public bool GetFullTime() => FullTime;
+        public void SetFullTime(bool value) => FullTime = value;
+
+        public int GetWorkingHours() => WorkingHours;
+        public void SetWorkingHours(int value) => WorkingHours = value;
     }
 
     public class AdminManage {
@@ -85,7 +93,7 @@ namespace comp1551
         // add admin
         public void AddAdmin(AdminClass admin)
         {
-            string query = $"INSERT INTO admins (Name, Telephone, Email, Role, Salary, FullTime, WorkingHours) VALUES ('{admin.Name}', '{admin.Telephone}', '{admin.Email}', '{admin.Role}', '{admin.Salary}', '{admin.FullTime}', '{admin.WorkingHours}')";
+            string query = $"INSERT INTO admins (Name, Telephone, Email, Role, Salary, FullTime, WorkingHours) VALUES ('{admin.Name}', '{admin.Telephone}', '{admin.Email}', '{admin.Role}', '{admin.GetSalary()}', '{admin.GetFullTime()}', '{admin.GetWorkingHours()}')";
             database.ExecuteNonQuery(query);
         }
 
@@ -107,9 +115,9 @@ namespace comp1551
 
                 // update the admin table based on the user information
                 string adminQuery = $"UPDATE admin " +
-                                    $"SET salary = '{updatedAdmin.Salary}', " +
-                                    $"workingHours = '{updatedAdmin.WorkingHours}', " +
-                                    $"isFullTime = '{(updatedAdmin.FullTime ? 1 : 0)}' " +
+                                    $"SET salary = '{updatedAdmin.GetSalary()}', " +
+                                    $"workingHours = '{updatedAdmin.GetWorkingHours()}', " +
+                                    $"isFullTime = '{(updatedAdmin.GetFullTime() ? 1 : 0)}' " +
                                     $"WHERE userId = '{id}'";
 
                 database.ExecuteNonQuery(adminQuery);
@@ -146,10 +154,10 @@ namespace comp1551
                     Telephone = row["Telephone"].ToString(),
                     Email = row["Email"].ToString(),
                     Role = UserRole.Admin,
-                    Salary = Convert.ToDecimal(row["Salary"]),
-                    FullTime = Convert.ToBoolean(row["FullTime"]),
-                    WorkingHours = Convert.ToInt32(row["WorkingHours"])
                 };
+                admin.SetSalary(Convert.ToDecimal(row["Salary"]));
+                admin.SetFullTime(Convert.ToBoolean(row["FullTime"]));
+                admin.SetWorkingHours(Convert.ToInt32(row["WorkingHours"]));
                 admins.Add(admin);
             }
             return admins;

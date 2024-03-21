@@ -155,6 +155,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(978, 434);
+            ControlBox = false;
             Controls.Add(linkLabelUsers);
             Controls.Add(btnSalary);
             Controls.Add(btnSetting);
@@ -165,6 +166,7 @@
             Controls.Add(btnClass);
             Controls.Add(btnStudent);
             Controls.Add(lblMainPage);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "MainPage";
             Load += MainPage_Load_1;
             ResumeLayout(false);

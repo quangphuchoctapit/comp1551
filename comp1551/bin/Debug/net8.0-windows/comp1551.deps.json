@@ -13,6 +13,14 @@
         },
         "runtime": {
           "comp1551.dll": {}
+        },
+        "resources": {
+          "aa-DJ/comp1551.resources.dll": {
+            "locale": "aa-DJ"
+          },
+          "en-AS/comp1551.resources.dll": {
+            "locale": "en-AS"
+          }
         }
       },
       "BouncyCastle.Cryptography/2.2.1": {

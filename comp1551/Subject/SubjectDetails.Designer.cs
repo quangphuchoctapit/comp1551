@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubjectDetails));
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
             btnSearchSubject = new Button();
             txtSearchSubject = new TextBox();
             lblSearchSubject = new Label();
@@ -38,40 +37,29 @@
             btnEditSubject = new Button();
             btnAddSubject = new Button();
             tableSubject = new DataGridView();
+            label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tableSubject).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnSearchSubject);
             panel1.Controls.Add(txtSearchSubject);
             panel1.Controls.Add(lblSearchSubject);
             panel1.Controls.Add(btnDeleteSubject);
             panel1.Controls.Add(btnEditSubject);
             panel1.Controls.Add(btnAddSubject);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 66);
             panel1.Name = "panel1";
             panel1.Size = new Size(985, 98);
             panel1.TabIndex = 5;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(839, 43);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
-            // 
             // btnSearchSubject
             // 
+            btnSearchSubject.BackgroundImage = (Image)resources.GetObject("btnSearchSubject.BackgroundImage");
+            btnSearchSubject.BackgroundImageLayout = ImageLayout.Zoom;
             btnSearchSubject.Location = new Point(829, 33);
             btnSearchSubject.Name = "btnSearchSubject";
             btnSearchSubject.Size = new Size(40, 40);
@@ -131,33 +119,45 @@
             tableSubject.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableSubject.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableSubject.Dock = DockStyle.Bottom;
-            tableSubject.Location = new Point(0, 125);
+            tableSubject.Location = new Point(0, 164);
             tableSubject.Name = "tableSubject";
             tableSubject.RowHeadersWidth = 62;
             tableSubject.Size = new Size(985, 325);
             tableSubject.TabIndex = 4;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(429, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(130, 45);
+            label1.TabIndex = 6;
+            label1.Text = "Subject";
+            // 
             // SubjectDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(985, 450);
+            ClientSize = new Size(985, 489);
+            ControlBox = false;
+            Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(tableSubject);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "SubjectDetails";
             Text = "SubjectDetails";
             Load += SubjectDetails_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)tableSubject).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
-        private PictureBox pictureBox1;
         private Button btnSearchSubject;
         private TextBox txtSearchSubject;
         private Label lblSearchSubject;
@@ -165,5 +165,6 @@
         private Button btnEditSubject;
         private Button btnAddSubject;
         private DataGridView tableSubject;
+        private Label label1;
     }
 }

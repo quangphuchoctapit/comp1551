@@ -30,7 +30,7 @@ namespace comp1551.Teacher
         }
 
         // this func will be execueted when the user clicks 'Edit' button
-                private void btnEditTeacher_Click(object sender, EventArgs e)
+        private void btnEditTeacher_Click(object sender, EventArgs e)
         {
             // open the AddTeacher form to edit an existing teacher
             using (AddTeacher at = new AddTeacher())
@@ -103,7 +103,7 @@ namespace comp1551.Teacher
 
                     foreach (var teacher in teachers)
                     {
-                        teacherTable.Rows.Add(teacher.Id, teacher.Name, teacher.Email, teacher.Telephone, teacher.FacultyName, teacher.Qualifications, teacher.Salary, teacher.Subject1, teacher.Subject2);
+                        teacherTable.Rows.Add(teacher.Id, teacher.Name, teacher.Email, teacher.Telephone, teacher.GetFacultyName(), teacher.GetQualifications(), teacher.GetSalary(), teacher.GetSubject1(), teacher.GetSubject2());
                     }
 
                     // set datagridview properties
@@ -176,7 +176,7 @@ namespace comp1551.Teacher
         }
 
         // this func is executed when the winform is inititally loaded / opened
-        private void TeacherDetails_Load(object sender, EventArgs e)
+        private void TeacherDetails_Load_1(object sender, EventArgs e)
         {
             // load teacher data when the form is loaded
             LoadTeacherData();
@@ -222,7 +222,7 @@ namespace comp1551.Teacher
 
                 foreach (var teacher in teachers)
                 {
-                    teacherTable.Rows.Add(teacher.Id, teacher.Name, teacher.Email, teacher.Telephone, teacher.FacultyName, teacher.Qualifications, teacher.Salary, teacher.Subject1, teacher.Subject2);
+                    teacherTable.Rows.Add(teacher.Id, teacher.Name, teacher.Email, teacher.Telephone, teacher.GetFacultyName(), teacher.GetQualifications(), teacher.GetSalary(), teacher.GetSubject1(), teacher.GetSubject2());
                 }
 
                 // set DataGridView properties
@@ -340,5 +340,158 @@ namespace comp1551.Teacher
         {
             HandleSearchTeacher();
         }
+
+        private Panel panel1;
+        private Button btnSearchTeacher;
+        private TextBox txtSearchTeacher;
+        private Label lblSearchTeacher;
+        private Button btnDeleteTeacher;
+        private Button btnEditTeacher;
+        private Button btnAddTeacher;
+        private DataGridView tableTeacher;
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherDetails));
+            panel1 = new Panel();
+            btnSearchTeacher = new Button();
+            txtSearchTeacher = new TextBox();
+            lblSearchTeacher = new Label();
+            btnDeleteTeacher = new Button();
+            btnEditTeacher = new Button();
+            btnAddTeacher = new Button();
+            tableTeacher = new DataGridView();
+            label1 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tableTeacher).BeginInit();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnSearchTeacher);
+            panel1.Controls.Add(txtSearchTeacher);
+            panel1.Controls.Add(lblSearchTeacher);
+            panel1.Controls.Add(btnDeleteTeacher);
+            panel1.Controls.Add(btnEditTeacher);
+            panel1.Controls.Add(btnAddTeacher);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 110);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(973, 98);
+            panel1.TabIndex = 5;
+            // 
+            // btnSearchTeacher
+            // 
+            btnSearchTeacher.BackgroundImage = (Image)resources.GetObject("btnSearchTeacher.BackgroundImage");
+            btnSearchTeacher.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSearchTeacher.Location = new Point(829, 33);
+            btnSearchTeacher.Name = "btnSearchTeacher";
+            btnSearchTeacher.Size = new Size(40, 40);
+            btnSearchTeacher.TabIndex = 3;
+            btnSearchTeacher.UseVisualStyleBackColor = true;
+            btnSearchTeacher.Click += btnSearchTeacher_Click;
+            // 
+            // txtSearchTeacher
+            // 
+            txtSearchTeacher.Location = new Point(650, 35);
+            txtSearchTeacher.Name = "txtSearchTeacher";
+            txtSearchTeacher.Size = new Size(161, 31);
+            txtSearchTeacher.TabIndex = 2;
+            // 
+            // lblSearchTeacher
+            // 
+            lblSearchTeacher.AutoSize = true;
+            lblSearchTeacher.Location = new Point(510, 38);
+            lblSearchTeacher.Name = "lblSearchTeacher";
+            lblSearchTeacher.Size = new Size(131, 25);
+            lblSearchTeacher.TabIndex = 1;
+            lblSearchTeacher.Text = "Search Teacher:";
+            // 
+            // btnDeleteTeacher
+            // 
+            btnDeleteTeacher.Location = new Point(339, 12);
+            btnDeleteTeacher.Name = "btnDeleteTeacher";
+            btnDeleteTeacher.Size = new Size(140, 70);
+            btnDeleteTeacher.TabIndex = 0;
+            btnDeleteTeacher.Text = "Delete Teacher";
+            btnDeleteTeacher.UseVisualStyleBackColor = true;
+            btnDeleteTeacher.Click += btnDeleteTeacher_Click;
+            // 
+            // btnEditTeacher
+            // 
+            btnEditTeacher.Location = new Point(175, 12);
+            btnEditTeacher.Name = "btnEditTeacher";
+            btnEditTeacher.Size = new Size(140, 70);
+            btnEditTeacher.TabIndex = 0;
+            btnEditTeacher.Text = "Edit Teacher";
+            btnEditTeacher.UseVisualStyleBackColor = true;
+            btnEditTeacher.Click += btnEditTeacher_Click;
+            // 
+            // btnAddTeacher
+            // 
+            btnAddTeacher.Location = new Point(12, 12);
+            btnAddTeacher.Name = "btnAddTeacher";
+            btnAddTeacher.Size = new Size(140, 70);
+            btnAddTeacher.TabIndex = 0;
+            btnAddTeacher.Text = "Add Teacher";
+            btnAddTeacher.UseVisualStyleBackColor = true;
+            btnAddTeacher.Click += btnAddTeacher_Click;
+            // 
+            // tableTeacher
+            // 
+            tableTeacher.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tableTeacher.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            tableTeacher.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tableTeacher.Dock = DockStyle.Bottom;
+            tableTeacher.Location = new Point(0, 208);
+            tableTeacher.Name = "tableTeacher";
+            tableTeacher.RowHeadersWidth = 62;
+            tableTeacher.Size = new Size(973, 325);
+            tableTeacher.TabIndex = 4;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(409, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(134, 45);
+            label1.TabIndex = 6;
+            label1.Text = "Teacher";
+            // 
+            // TeacherDetails
+            // 
+            ClientSize = new Size(973, 533);
+            ControlBox = false;
+            Controls.Add(label1);
+            Controls.Add(panel1);
+            Controls.Add(tableTeacher);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "TeacherDetails";
+            Load += TeacherDetails_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tableTeacher).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        private void TeacherDetails_Load(object sender, EventArgs e)
+        {
+            // load teacher data when the form is loaded
+            LoadTeacherData();
+            btnAddTeacher.Enabled = false;
+            btnEditTeacher.Enabled = false;
+            btnDeleteTeacher.Enabled = false;
+            // check if the current user role is admin or not, if yes, enable the user to use the below btns
+            if (userRole == "admin")
+            {
+                btnAddTeacher.Enabled = true;
+                btnEditTeacher.Enabled = true;
+                btnDeleteTeacher.Enabled = true;
+            }
+        }
+
+        private Label label1;
     }
 }

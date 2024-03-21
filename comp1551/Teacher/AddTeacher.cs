@@ -223,14 +223,16 @@ namespace comp1551.Teacher
                         {
                             Name = txtAddTeacherName.Text,
                             Email = txtAddTeacherEmail.Text,
-                            Telephone = txtAddTeacherTelephone.Text,
-                            Image = base64Image,
-                            Salary = 0,
-                            Subject1 = txtAddTeacherSubject1.Text,
-                            Subject2 = txtAddTeacherSubject2.Text,
-                            FacultyId = selectedFaculty.Key,
-                            Qualifications = txtAddTeacherQualifications.Text
+                            Telephone = txtAddTeacherTelephone.Text
                         };
+
+                        newTeacher.SetImage(base64Image);
+                        newTeacher.SetSalary(0);
+                        newTeacher.SetSubject1(txtAddTeacherSubject1.Text);
+                        newTeacher.SetSubject2(txtAddTeacherSubject2.Text);
+                        newTeacher.SetFacultyId(selectedFaculty.Key);
+                        newTeacher.SetQualifications(txtAddTeacherQualifications.Text);
+
                         UoGSystem system = new UoGSystem();
                         system.TeacherManage.AddTeacher(newTeacher);
                         MessageBox.Show("Teacher added successfully.");
@@ -261,13 +263,14 @@ namespace comp1551.Teacher
                         {
                             Name = txtAddTeacherName.Text,
                             Email = txtAddTeacherEmail.Text,
-                            Telephone = txtAddTeacherTelephone.Text,
-                            FacultyId = selectedFaculty.Key,
-                            Qualifications = txtAddTeacherQualifications.Text,
-                            Subject1 = txtAddTeacherSubject1.Text,
-                            Subject2 = txtAddTeacherSubject2.Text,
-                            Image = base64Image
+                            Telephone = txtAddTeacherTelephone.Text
                         };
+
+                        updatedTeacher.SetFacultyId(selectedFaculty.Key);
+                        updatedTeacher.SetQualifications(txtAddTeacherQualifications.Text);
+                        updatedTeacher.SetSubject1(txtAddTeacherSubject1.Text);
+                        updatedTeacher.SetSubject2(txtAddTeacherSubject2.Text);
+                        updatedTeacher.SetImage(base64Image);
                         UoGSystem system = new UoGSystem();
                         system.TeacherManage.UpdateTeacher(teacherId, updatedTeacher);
                         MessageBox.Show("Teacher information updated successfully.");

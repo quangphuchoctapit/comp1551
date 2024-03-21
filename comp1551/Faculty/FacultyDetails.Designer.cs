@@ -31,16 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacultyDetails));
             tableFaculty = new DataGridView();
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
             btnSearchFaculty = new Button();
             txtSearchFaculty = new TextBox();
             lblSearchFaculty = new Label();
             btnDeleteFaculty = new Button();
             btnEditFaculty = new Button();
             btnAddFaculty = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)tableFaculty).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tableFaculty
@@ -49,7 +48,7 @@
             tableFaculty.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableFaculty.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableFaculty.Dock = DockStyle.Bottom;
-            tableFaculty.Location = new Point(0, 125);
+            tableFaculty.Location = new Point(0, 216);
             tableFaculty.Name = "tableFaculty";
             tableFaculty.RowHeadersWidth = 62;
             tableFaculty.Size = new Size(896, 325);
@@ -57,7 +56,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(btnSearchFaculty);
             panel1.Controls.Add(txtSearchFaculty);
             panel1.Controls.Add(lblSearchFaculty);
@@ -67,24 +66,14 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(896, 98);
+            panel1.Size = new Size(896, 193);
             panel1.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(839, 43);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // btnSearchFaculty
             // 
-            btnSearchFaculty.Location = new Point(829, 33);
+            btnSearchFaculty.BackgroundImage = (Image)resources.GetObject("btnSearchFaculty.BackgroundImage");
+            btnSearchFaculty.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSearchFaculty.Location = new Point(828, 113);
             btnSearchFaculty.Name = "btnSearchFaculty";
             btnSearchFaculty.Size = new Size(40, 40);
             btnSearchFaculty.TabIndex = 3;
@@ -93,7 +82,7 @@
             // 
             // txtSearchFaculty
             // 
-            txtSearchFaculty.Location = new Point(629, 35);
+            txtSearchFaculty.Location = new Point(628, 115);
             txtSearchFaculty.Name = "txtSearchFaculty";
             txtSearchFaculty.Size = new Size(182, 31);
             txtSearchFaculty.TabIndex = 2;
@@ -101,7 +90,7 @@
             // lblSearchFaculty
             // 
             lblSearchFaculty.AutoSize = true;
-            lblSearchFaculty.Location = new Point(496, 38);
+            lblSearchFaculty.Location = new Point(495, 118);
             lblSearchFaculty.Name = "lblSearchFaculty";
             lblSearchFaculty.Size = new Size(127, 25);
             lblSearchFaculty.TabIndex = 1;
@@ -109,7 +98,7 @@
             // 
             // btnDeleteFaculty
             // 
-            btnDeleteFaculty.Location = new Point(339, 12);
+            btnDeleteFaculty.Location = new Point(338, 92);
             btnDeleteFaculty.Name = "btnDeleteFaculty";
             btnDeleteFaculty.Size = new Size(140, 70);
             btnDeleteFaculty.TabIndex = 0;
@@ -119,7 +108,7 @@
             // 
             // btnEditFaculty
             // 
-            btnEditFaculty.Location = new Point(175, 12);
+            btnEditFaculty.Location = new Point(174, 92);
             btnEditFaculty.Name = "btnEditFaculty";
             btnEditFaculty.Size = new Size(140, 70);
             btnEditFaculty.TabIndex = 0;
@@ -129,7 +118,7 @@
             // 
             // btnAddFaculty
             // 
-            btnAddFaculty.Location = new Point(12, 12);
+            btnAddFaculty.Location = new Point(11, 92);
             btnAddFaculty.Name = "btnAddFaculty";
             btnAddFaculty.Size = new Size(140, 70);
             btnAddFaculty.TabIndex = 0;
@@ -137,20 +126,31 @@
             btnAddFaculty.UseVisualStyleBackColor = true;
             btnAddFaculty.Click += btnAddFaculty_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(397, 22);
+            label1.Name = "label1";
+            label1.Size = new Size(125, 45);
+            label1.TabIndex = 4;
+            label1.Text = "Faculty";
+            // 
             // FacultyDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 450);
+            ClientSize = new Size(896, 541);
+            ControlBox = false;
             Controls.Add(tableFaculty);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FacultyDetails";
             Text = "FacultyDetails";
             Load += FacultyDetails_Load;
             ((System.ComponentModel.ISupportInitialize)tableFaculty).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -158,12 +158,12 @@
 
         private DataGridView tableFaculty;
         private Panel panel1;
-        private PictureBox pictureBox1;
         private Button btnSearchFaculty;
         private TextBox txtSearchFaculty;
         private Label lblSearchFaculty;
         private Button btnDeleteFaculty;
         private Button btnEditFaculty;
         private Button btnAddFaculty;
+        private Label label1;
     }
 }

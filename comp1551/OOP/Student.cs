@@ -9,15 +9,42 @@ namespace comp1551
     // derived class representing student
     public class StudentClass : UserClass
     {
-        public string CurrentSubject1 { get; set; }
-        public string CurrentSubject2 { get; set; }
-        public string PreviousSubject1 { get; set; }
-        public string PreviousSubject2 { get; set; }
-        public string FacultyName { get; set; }
-        public string ClassName { get; set; }
-        public string Image { get; set; }
-        public int FacultyId { get; set; }
-        public int ClassId { get; set; }
+        private string currentSubject1;
+        public string GetCurrentSubject1() => currentSubject1;
+        public void SetCurrentSubject1(string value) => currentSubject1 = value;
+
+        private string currentSubject2;
+        public string GetCurrentSubject2() => currentSubject2;
+        public void SetCurrentSubject2(string value) => currentSubject2 = value;
+
+        private string previousSubject1;
+        public string GetPreviousSubject1() => previousSubject1;
+        public void SetPreviousSubject1(string value) => previousSubject1 = value;
+
+        private string previousSubject2;
+        public string GetPreviousSubject2() => previousSubject2;
+        public void SetPreviousSubject2(string value) => previousSubject2 = value;
+
+        private string facultyName;
+        public string GetFacultyName() => facultyName;
+        public void SetFacultyName(string value) => facultyName = value;
+
+        private string className;
+        public string GetClassName() => className;
+        public void SetClassName(string value) => className = value;
+
+        private string image;
+        public string GetImage() => image;
+        public void SetImage(string value) => image = value;
+
+        private int facultyId;
+        public int GetFacultyId() => facultyId;
+        public void SetFacultyId(int value) => facultyId = value;
+
+        private int classId;
+        public int GetClassId() => classId;
+        public void SetClassId(int value) => classId = value;
+
     }
 
     public class StudentManage
@@ -48,9 +75,9 @@ namespace comp1551
 
                 // Convert the image to a Base64 string
                 string base64Image = "";
-                if (!string.IsNullOrEmpty(student.Image))
+                if (!string.IsNullOrEmpty(student.GetImage()))
                 {
-                    base64Image = student.Image;
+                    base64Image = student.GetImage();
                 }
 
                 // Insert new user into the database with the role 'student'
@@ -65,7 +92,7 @@ namespace comp1551
                 int userId = database.GetUserId(getUserIdQuery);
 
                 string insertStudentQuery = $"INSERT INTO Student (currSubject1, currSubject2, UserId, prevSubject1, prevSubject2, facultyId, classId) " +
-                    $"VALUES ('{student.CurrentSubject1}',  '{student.CurrentSubject2}', {userId}, '{student.PreviousSubject1}', '{student.PreviousSubject2}', '{student.FacultyId}', '{student.ClassId}')";
+                    $"VALUES ('{student.GetCurrentSubject1()}',  '{student.GetCurrentSubject2()}', {userId}, '{student.GetPreviousSubject1()}', '{student.GetPreviousSubject2()}', '{student.GetFacultyId()}', '{student.GetClassId()}')";
 
                 // Execute the insert query for the student
                 database.ExecuteNonQuery(insertStudentQuery);
@@ -85,18 +112,19 @@ namespace comp1551
         public void UpdateStudent(int id, StudentClass updatedStudent)
         {
 
-            string imageValue = updatedStudent.Image != null ? $"'{updatedStudent.Image}'" : "NULL";
+            string imageValue = updatedStudent.GetImage() != null ? $"'{updatedStudent.GetImage()}'" : "NULL";
+            updatedStudent.SetImage(imageValue);
             string updateQueryUser = $"UPDATE User SET Name = '{updatedStudent.Name}', " +
                 $"Email = '{updatedStudent.Email}', Telephone = '{updatedStudent.Telephone}', " +
                 $"Image = {imageValue} WHERE Id = '{id}'";
 
             // Update the student information
-            string updateQueryStudent = $"UPDATE Student SET FacultyId = '{updatedStudent.FacultyId}', " +
-                $"ClassId = '{updatedStudent.ClassId}', " +
-                $"currSubject1 = '{updatedStudent.CurrentSubject1}', " +
-                $"currSubject2 = '{updatedStudent.CurrentSubject2}', " +
-                $"prevSubject1 = '{updatedStudent.PreviousSubject1}', " +
-                $"prevSubject2 = '{updatedStudent.PreviousSubject2}' " +
+            string updateQueryStudent = $"UPDATE Student SET FacultyId = '{updatedStudent.GetFacultyId()}', " +
+                $"ClassId = '{updatedStudent.GetClassId()}', " +
+                $"currSubject1 = '{updatedStudent.GetCurrentSubject1()}', " +
+                $"currSubject2 = '{updatedStudent.GetCurrentSubject2()}', " +
+                $"prevSubject1 = '{updatedStudent.GetPreviousSubject1()}', " +
+                $"prevSubject2 = '{updatedStudent.GetPreviousSubject2()}' " +
                 $"WHERE UserId = '{id}'";
 
             try
@@ -238,13 +266,13 @@ namespace comp1551
                         Name = row["Name"].ToString(),
                         Email = row["Email"].ToString(),
                         Telephone = row["Telephone"].ToString(),
-                        FacultyName = row["FacultyName"].ToString(),
-                        ClassName = row["ClassName"].ToString(),
-                        CurrentSubject1 = row["CurrSubject1"].ToString(),
-                        CurrentSubject2 = row["CurrSubject2"].ToString(),
-                        PreviousSubject1 = row["PrevSubject1"].ToString(),
-                        PreviousSubject2 = row["PrevSubject2"].ToString()
                     };
+                    student.SetFacultyName(row["FacultyName"].ToString());
+                    student.SetClassName(row["ClassName"].ToString());
+                    student.SetCurrentSubject1(row["CurrSubject1"].ToString());
+                    student.SetCurrentSubject2(row["CurrSubject2"].ToString());
+                    student.SetPreviousSubject1(row["PrevSubject1"].ToString());
+                    student.SetPreviousSubject2(row["PrevSubject2"].ToString());
                     students.Add(student);
                 }
             }
@@ -286,15 +314,16 @@ namespace comp1551
                         Name = row["Name"].ToString(),
                         Email = row["Email"].ToString(),
                         Telephone = row["Telephone"].ToString(),
-                        FacultyName = row["FacultyName"].ToString(),
-                        ClassName = row["ClassName"].ToString(),
-                        CurrentSubject1 = row["CurrSubject1"].ToString(),
-                        CurrentSubject2 = row["CurrSubject2"].ToString(),
-                        PreviousSubject1 = row["PrevSubject1"].ToString(),
-                        PreviousSubject2 = row["PrevSubject2"].ToString()
                     };
+                    student.SetFacultyName(row["FacultyName"].ToString());
+                    student.SetClassName(row["ClassName"].ToString());
+                    student.SetCurrentSubject1(row["CurrSubject1"].ToString());
+                    student.SetCurrentSubject2(row["CurrSubject2"].ToString());
+                    student.SetPreviousSubject1(row["PrevSubject1"].ToString());
+                    student.SetPreviousSubject2(row["PrevSubject2"].ToString());
                     students.Add(student);
                 }
+
             }
             catch (Exception ex)
             {

@@ -35,6 +35,7 @@ namespace comp1551
                     string role = row["role"].ToString();
                     string password = row["password"].ToString();
                     string userID = row["id"].ToString();
+                    string username = row["name"].ToString();
 
                     // if the user inputs (telephone and password) match the database result, assign the global vairables: GlobalVariables.UserId and GlobalVariables.UserRole to later on identify the current logged in user
                     if (txtTelephone.Text == telephone && txtPassword.Text == password)
@@ -44,6 +45,7 @@ namespace comp1551
                         // Set the GlobalVariables.UserId and GlobalVariables.UserRole 
                         GlobalVariables.UserId = int.Parse(userID);
                         GlobalVariables.UserRole = role;
+                        GlobalVariables.UserName = username;
                         // after setting above variables, end the foreach loop
                         break;
                     }
@@ -53,7 +55,7 @@ namespace comp1551
                 if (userFound)
                 {
                     // Open the MainPage form when login is successful
-                    MainPage home = new MainPage();
+                    Main home = new Main();
                     this.Hide();
                     home.ShowDialog();
                 }
