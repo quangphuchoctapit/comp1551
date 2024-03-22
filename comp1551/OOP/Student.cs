@@ -245,11 +245,14 @@ namespace comp1551
         public List<StudentClass> GetAllStudents()
         {
             List<StudentClass> students = new List<StudentClass>();
+
             try
             {
                 database.OpenConnection();
 
-                string query = "SELECT u.Id, u.Name, u.Email, u.Telephone, f.Name AS FacultyName, c.Name AS ClassName, s.currSubject1 AS CurrSubject1, s.currSubject2 AS CurrSubject2, s.prevSubject1 AS PrevSubject1, s.prevSubject2 AS PrevSubject2 " +
+                string query = "SELECT u.Id, u.Name, u.Email, u.Telephone, f.Name AS FacultyName, c.Name AS ClassName, " +
+                               "s.currSubject1 AS CurrSubject1, s.currSubject2 AS CurrSubject2, " +
+                               "s.prevSubject1 AS PrevSubject1, s.prevSubject2 AS PrevSubject2 " +
                                "FROM User u " +
                                "JOIN Student s ON u.Id = s.UserId " +
                                "LEFT JOIN Faculty f ON s.FacultyId = f.Id " +
@@ -267,12 +270,15 @@ namespace comp1551
                         Email = row["Email"].ToString(),
                         Telephone = row["Telephone"].ToString(),
                     };
+
+                    // Use the setter methods to set the additional properties
                     student.SetFacultyName(row["FacultyName"].ToString());
                     student.SetClassName(row["ClassName"].ToString());
                     student.SetCurrentSubject1(row["CurrSubject1"].ToString());
                     student.SetCurrentSubject2(row["CurrSubject2"].ToString());
                     student.SetPreviousSubject1(row["PrevSubject1"].ToString());
                     student.SetPreviousSubject2(row["PrevSubject2"].ToString());
+
                     students.Add(student);
                 }
             }
@@ -336,8 +342,5 @@ namespace comp1551
 
             return students;
         }
-
-
-
     }
 }

@@ -48,74 +48,97 @@ namespace comp1551.Student
                     // Clear existing columns if any
                     tableStudent.Columns.Clear();
 
-                    // Add DataGridView columns
-                    DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn();
-                    idColumn.DataPropertyName = "Id";
-                    idColumn.HeaderText = "ID";
+                    // Convert the list of students to a DataTable
+                    DataTable studentTable = new DataTable();
+                    studentTable.Columns.Add("Id", typeof(int));
+                    studentTable.Columns.Add("Name", typeof(string));
+                    studentTable.Columns.Add("Email", typeof(string));
+                    studentTable.Columns.Add("Telephone", typeof(string));
+                    studentTable.Columns.Add("FacultyName", typeof(string));
+                    studentTable.Columns.Add("ClassName", typeof(string));
+                    studentTable.Columns.Add("CurrentSubject1", typeof(string));
+                    studentTable.Columns.Add("CurrentSubject2", typeof(string));
+                    studentTable.Columns.Add("PreviousSubject1", typeof(string));
+                    studentTable.Columns.Add("PreviousSubject2", typeof(string));
 
-                    DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
-                    nameColumn.DataPropertyName = "Name";
-                    nameColumn.HeaderText = "Name";
-
-                    DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn();
-                    emailColumn.DataPropertyName = "Email";
-                    emailColumn.HeaderText = "Email";
-
-                    DataGridViewTextBoxColumn telephoneColumn = new DataGridViewTextBoxColumn();
-                    telephoneColumn.DataPropertyName = "Telephone";
-                    telephoneColumn.HeaderText = "Telephone";
-
-                    DataGridViewTextBoxColumn facultyColumn = new DataGridViewTextBoxColumn();
-                    facultyColumn.DataPropertyName = "FacultyName"; // Using the alias from the query
-                    facultyColumn.HeaderText = "Faculty";
-
-                    DataGridViewTextBoxColumn classColumn = new DataGridViewTextBoxColumn();
-                    classColumn.DataPropertyName = "ClassName"; // Using the alias from the query
-                    classColumn.HeaderText = "Class";
-
-                    DataGridViewTextBoxColumn CurrSubject1Column = new DataGridViewTextBoxColumn();
-                    CurrSubject1Column.DataPropertyName = "CurrentSubject1"; // Using the alias from the query
-                    CurrSubject1Column.HeaderText = "Curr Subject 1";
-
-                    DataGridViewTextBoxColumn CurrSubject2Column = new DataGridViewTextBoxColumn();
-                    CurrSubject2Column.DataPropertyName = "CurrentSubject2"; // Using the alias from the query
-                    CurrSubject2Column.HeaderText = "Curr Subject 2";
-
-                    DataGridViewTextBoxColumn PrevSubject1Column = new DataGridViewTextBoxColumn();
-                    PrevSubject1Column.DataPropertyName = "PreviousSubject1"; // Using the alias from the query
-                    PrevSubject1Column.HeaderText = "Prev Subject 1";
-
-                    DataGridViewTextBoxColumn PrevSubject2Column = new DataGridViewTextBoxColumn();
-                    PrevSubject2Column.DataPropertyName = "PreviousSubject2"; // Using the alias from the query
-                    PrevSubject2Column.HeaderText = "Prev Subject 2";
-
-                    // Add columns to the DataGridView
-                    tableStudent.Columns.Add(idColumn);
-                    tableStudent.Columns.Add(nameColumn);
-                    tableStudent.Columns.Add(emailColumn);
-                    tableStudent.Columns.Add(telephoneColumn);
-                    tableStudent.Columns.Add(facultyColumn);
-                    tableStudent.Columns.Add(classColumn);
-                    tableStudent.Columns.Add(CurrSubject1Column);
-                    tableStudent.Columns.Add(CurrSubject2Column);
-                    tableStudent.Columns.Add(PrevSubject1Column);
-                    tableStudent.Columns.Add(PrevSubject2Column);
+                    foreach (var student in students)
+                    {
+                        studentTable.Rows.Add(student.Id, student.Name, student.Email, student.Telephone, student.GetFacultyName(), student.GetClassName(), student.GetCurrentSubject1(), student.GetCurrentSubject2(), student.GetPreviousSubject1(), student.GetPreviousSubject2());
+                    }
 
                     // Set DataGridView properties
                     tableStudent.AutoGenerateColumns = false;
-                    tableStudent.DataSource = students;
+                    tableStudent.DataSource = studentTable;
+
+                    // Add DataGridView columns if not already added
+                    if (tableStudent.Columns.Count == 0)
+                    {
+                        DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn();
+                        idColumn.DataPropertyName = "Id";
+                        idColumn.HeaderText = "ID";
+
+                        DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+                        nameColumn.DataPropertyName = "Name";
+                        nameColumn.HeaderText = "Name";
+
+                        DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn();
+                        emailColumn.DataPropertyName = "Email";
+                        emailColumn.HeaderText = "Email";
+
+                        DataGridViewTextBoxColumn telephoneColumn = new DataGridViewTextBoxColumn();
+                        telephoneColumn.DataPropertyName = "Telephone";
+                        telephoneColumn.HeaderText = "Telephone";
+
+                        DataGridViewTextBoxColumn facultyColumn = new DataGridViewTextBoxColumn();
+                        facultyColumn.DataPropertyName = "FacultyName"; // Using the alias from the query
+                        facultyColumn.HeaderText = "Faculty";
+
+                        DataGridViewTextBoxColumn classColumn = new DataGridViewTextBoxColumn();
+                        classColumn.DataPropertyName = "ClassName"; // Using the alias from the query
+                        classColumn.HeaderText = "Class";
+
+                        DataGridViewTextBoxColumn currSubject1Column = new DataGridViewTextBoxColumn();
+                        currSubject1Column.DataPropertyName = "CurrentSubject1"; // Using the alias from the query
+                        currSubject1Column.HeaderText = "Curr Subject 1";
+
+                        DataGridViewTextBoxColumn currSubject2Column = new DataGridViewTextBoxColumn();
+                        currSubject2Column.DataPropertyName = "CurrentSubject2"; // Using the alias from the query
+                        currSubject2Column.HeaderText = "Curr Subject 2";
+
+                        DataGridViewTextBoxColumn prevSubject1Column = new DataGridViewTextBoxColumn();
+                        prevSubject1Column.DataPropertyName = "PreviousSubject1"; // Using the alias from the query
+                        prevSubject1Column.HeaderText = "Prev Subject 1";
+
+                        DataGridViewTextBoxColumn prevSubject2Column = new DataGridViewTextBoxColumn();
+                        prevSubject2Column.DataPropertyName = "PreviousSubject2"; // Using the alias from the query
+                        prevSubject2Column.HeaderText = "Prev Subject 2";
+
+                        // Add columns to the DataGridView
+                        tableStudent.Columns.Add(idColumn);
+                        tableStudent.Columns.Add(nameColumn);
+                        tableStudent.Columns.Add(emailColumn);
+                        tableStudent.Columns.Add(telephoneColumn);
+                        tableStudent.Columns.Add(facultyColumn);
+                        tableStudent.Columns.Add(classColumn);
+                        tableStudent.Columns.Add(currSubject1Column);
+                        tableStudent.Columns.Add(currSubject2Column);
+                        tableStudent.Columns.Add(prevSubject1Column);
+                        tableStudent.Columns.Add(prevSubject2Column);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("No student data found.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + ex.Message);
+                MessageBox.Show($"Error loading student data: {ex.Message}");
             }
         }
+
+
+
 
         // this func will be executed when the user click 'Search' btn
         private void btnSearchStudent_Click(object sender, EventArgs e)
@@ -126,76 +149,102 @@ namespace comp1551.Student
         // this func is used to get corresponding student result based on the user input
         private void HandleSearchStudent()
         {
-            // use OOP to get all students => first instantiate UoGSystem class, then invoke GetStudentsByName method in StudentManage attribute in that instance
-            UoGSystem system = new UoGSystem();
-            List<StudentClass> students = system.StudentManage.GetStudentsByName(txtSearchStudent.Text);
-
-            // if there is a result, then fire the below condition
-            if (students.Count > 0)
+            try
             {
-                // Clear existing columns if any
-                tableStudent.Columns.Clear();
+                // use OOP to get all students => first instantiate UoGSystem class, then invoke GetAllStudents method in StudentManage attribute in that instance
+                UoGSystem system = new UoGSystem();
+                List<StudentClass> students = system.StudentManage.GetStudentsByName(txtSearchStudent.Text);
+                if (students.Count > 0)
+                {
+                    // Clear existing columns if any
+                    tableStudent.Columns.Clear();
 
-                // Add DataGridView columns
-                DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn();
-                idColumn.DataPropertyName = "Id";
-                idColumn.HeaderText = "ID";
+                    // Convert the list of students to a DataTable
+                    DataTable studentTable = new DataTable();
+                    studentTable.Columns.Add("Id", typeof(int));
+                    studentTable.Columns.Add("Name", typeof(string));
+                    studentTable.Columns.Add("Email", typeof(string));
+                    studentTable.Columns.Add("Telephone", typeof(string));
+                    studentTable.Columns.Add("FacultyName", typeof(string));
+                    studentTable.Columns.Add("ClassName", typeof(string));
+                    studentTable.Columns.Add("CurrentSubject1", typeof(string));
+                    studentTable.Columns.Add("CurrentSubject2", typeof(string));
+                    studentTable.Columns.Add("PreviousSubject1", typeof(string));
+                    studentTable.Columns.Add("PreviousSubject2", typeof(string));
 
-                DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
-                nameColumn.DataPropertyName = "Name";
-                nameColumn.HeaderText = "Name";
+                    foreach (var student in students)
+                    {
+                        studentTable.Rows.Add(student.Id, student.Name, student.Email, student.Telephone, student.GetFacultyName(), student.GetClassName(), student.GetCurrentSubject1(), student.GetCurrentSubject2(), student.GetPreviousSubject1(), student.GetPreviousSubject2());
+                    }
 
-                DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn();
-                emailColumn.DataPropertyName = "Email";
-                emailColumn.HeaderText = "Email";
+                    // Set DataGridView properties
+                    tableStudent.AutoGenerateColumns = false;
+                    tableStudent.DataSource = studentTable;
 
-                DataGridViewTextBoxColumn telephoneColumn = new DataGridViewTextBoxColumn();
-                telephoneColumn.DataPropertyName = "Telephone";
-                telephoneColumn.HeaderText = "Telephone";
+                    // Add DataGridView columns if not already added
+                    if (tableStudent.Columns.Count == 0)
+                    {
+                        DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn();
+                        idColumn.DataPropertyName = "Id";
+                        idColumn.HeaderText = "ID";
 
-                DataGridViewTextBoxColumn facultyColumn = new DataGridViewTextBoxColumn();
-                facultyColumn.DataPropertyName = "FacultyName"; // Using the alias from the query
-                facultyColumn.HeaderText = "Faculty";
+                        DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+                        nameColumn.DataPropertyName = "Name";
+                        nameColumn.HeaderText = "Name";
 
-                DataGridViewTextBoxColumn classColumn = new DataGridViewTextBoxColumn();
-                classColumn.DataPropertyName = "ClassName"; // Using the alias from the query
-                classColumn.HeaderText = "Class";
+                        DataGridViewTextBoxColumn emailColumn = new DataGridViewTextBoxColumn();
+                        emailColumn.DataPropertyName = "Email";
+                        emailColumn.HeaderText = "Email";
 
-                DataGridViewTextBoxColumn CurrSubject1Column = new DataGridViewTextBoxColumn();
-                CurrSubject1Column.DataPropertyName = "CurrentSubject1"; // Using the alias from the query
-                CurrSubject1Column.HeaderText = "Curr Subject 1";
+                        DataGridViewTextBoxColumn telephoneColumn = new DataGridViewTextBoxColumn();
+                        telephoneColumn.DataPropertyName = "Telephone";
+                        telephoneColumn.HeaderText = "Telephone";
 
-                DataGridViewTextBoxColumn CurrSubject2Column = new DataGridViewTextBoxColumn();
-                CurrSubject2Column.DataPropertyName = "CurrentSubject2"; // Using the alias from the query
-                CurrSubject2Column.HeaderText = "Curr Subject 2";
+                        DataGridViewTextBoxColumn facultyColumn = new DataGridViewTextBoxColumn();
+                        facultyColumn.DataPropertyName = "FacultyName"; // Using the alias from the query
+                        facultyColumn.HeaderText = "Faculty";
 
-                DataGridViewTextBoxColumn PrevSubject1Column = new DataGridViewTextBoxColumn();
-                PrevSubject1Column.DataPropertyName = "PreviousSubject1"; // Using the alias from the query
-                PrevSubject1Column.HeaderText = "Prev Subject 1";
+                        DataGridViewTextBoxColumn classColumn = new DataGridViewTextBoxColumn();
+                        classColumn.DataPropertyName = "ClassName"; // Using the alias from the query
+                        classColumn.HeaderText = "Class";
 
-                DataGridViewTextBoxColumn PrevSubject2Column = new DataGridViewTextBoxColumn();
-                PrevSubject2Column.DataPropertyName = "PreviousSubject2"; // Using the alias from the query
-                PrevSubject2Column.HeaderText = "Prev Subject 2";
+                        DataGridViewTextBoxColumn currSubject1Column = new DataGridViewTextBoxColumn();
+                        currSubject1Column.DataPropertyName = "CurrentSubject1"; // Using the alias from the query
+                        currSubject1Column.HeaderText = "Curr Subject 1";
 
-                // Add columns to the DataGridView
-                tableStudent.Columns.Add(idColumn);
-                tableStudent.Columns.Add(nameColumn);
-                tableStudent.Columns.Add(emailColumn);
-                tableStudent.Columns.Add(telephoneColumn);
-                tableStudent.Columns.Add(facultyColumn);
-                tableStudent.Columns.Add(classColumn);
-                tableStudent.Columns.Add(CurrSubject1Column);
-                tableStudent.Columns.Add(CurrSubject2Column);
-                tableStudent.Columns.Add(PrevSubject1Column);
-                tableStudent.Columns.Add(PrevSubject2Column);
+                        DataGridViewTextBoxColumn currSubject2Column = new DataGridViewTextBoxColumn();
+                        currSubject2Column.DataPropertyName = "CurrentSubject2"; // Using the alias from the query
+                        currSubject2Column.HeaderText = "Curr Subject 2";
 
-                // Set DataGridView properties
-                tableStudent.AutoGenerateColumns = false;
-                tableStudent.DataSource = students;
+                        DataGridViewTextBoxColumn prevSubject1Column = new DataGridViewTextBoxColumn();
+                        prevSubject1Column.DataPropertyName = "PreviousSubject1"; // Using the alias from the query
+                        prevSubject1Column.HeaderText = "Prev Subject 1";
+
+                        DataGridViewTextBoxColumn prevSubject2Column = new DataGridViewTextBoxColumn();
+                        prevSubject2Column.DataPropertyName = "PreviousSubject2"; // Using the alias from the query
+                        prevSubject2Column.HeaderText = "Prev Subject 2";
+
+                        // Add columns to the DataGridView
+                        tableStudent.Columns.Add(idColumn);
+                        tableStudent.Columns.Add(nameColumn);
+                        tableStudent.Columns.Add(emailColumn);
+                        tableStudent.Columns.Add(telephoneColumn);
+                        tableStudent.Columns.Add(facultyColumn);
+                        tableStudent.Columns.Add(classColumn);
+                        tableStudent.Columns.Add(currSubject1Column);
+                        tableStudent.Columns.Add(currSubject2Column);
+                        tableStudent.Columns.Add(prevSubject1Column);
+                        tableStudent.Columns.Add(prevSubject2Column);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No student data found.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No student data found.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Error loading student data: {ex.Message}");
             }
         }
 
@@ -213,7 +262,7 @@ namespace comp1551.Student
 
         }
 
-        // this func will be exectued when the user click 'Edit' btn
+        // this func will be executed when the user clicks the 'Edit' button
         private void btnEditStudent_Click(object sender, EventArgs e)
         {
             // Open the AddStudent form to edit an existing student
@@ -222,36 +271,44 @@ namespace comp1551.Student
                 // Set the label text for Update Student
                 ac.lbl = "Update Student";
 
-                // Check if any row is selected
+                // Check if any row is selected in the DataGridView
                 if (tableStudent.CurrentRow != null)
                 {
-                    // Get the selected student from the DataGridView
-                    StudentClass selectedStudent = tableStudent.CurrentRow.DataBoundItem as StudentClass;
+                    // Get the data bound to the selected row
+                    DataRowView selectedRowView = tableStudent.CurrentRow.DataBoundItem as DataRowView;
 
-                    // Check if the selectedStudent is not null
-                    if (selectedStudent != null)
+
+                    // Check if the selected row is bound to a data item
+                    if (selectedRowView != null)
                     {
-                        // Retrieve the ID value from the selected student
-                        int studentId = selectedStudent.Id;
-
-                        // Pass the student ID to the AddStudent form
-                        ac.studentId = studentId;
+                        // Get the student ID directly from the data source bound to the DataGridView
+                        if (selectedRowView.Row.Table.Columns.Contains("Id"))
+                        {
+                            int studentId = Convert.ToInt32(selectedRowView.Row["Id"]);
+                            ac.studentId = studentId; // pass the studentId to the AddStudent form
+                            ac.ShowDialog(); // Show the AddStudent form as a dialog
+                        }
+                        else
+                        {
+                            MessageBox.Show("The selected row does not contain an ID value.", "Invalid Row", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("No data associated with the selected row.", "Invalid Row", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        MessageBox.Show("The selected row is not bound to any data item.", "Invalid Row", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-
-                    ac.ShowDialog(); // Show the AddStudent form as a dialog
                 }
                 else
                 {
                     MessageBox.Show("Please select a student to edit.", "No Student Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
                 }
             }
         }
+
+
+
+
+
 
         // this func will be exectued when the user click 'delete' btn
         private void btnDeleteStudent_Click(object sender, EventArgs e)
