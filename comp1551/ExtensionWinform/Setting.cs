@@ -1,4 +1,5 @@
 ﻿using comp1551.Account;
+using comp1551.Subject;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,9 +9,12 @@ namespace comp1551.ExtensionWinform
 {
     public partial class Setting : Form
     {
-        public Setting()
+        private Main mainForm; // Field to store the reference to the Main form
+
+        public Setting(Main mainForm) // Constructor accepting a Main form reference
         {
             InitializeComponent();
+            this.mainForm = mainForm; // Store the reference to the Main form
         }
 
         // this func is executed when the user click Log Out button
@@ -41,20 +45,34 @@ namespace comp1551.ExtensionWinform
         // this func is executed when the user click account button
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            this.Close();
+            /*this.Close();
             using (AccountDetails ad = new AccountDetails())
             {
                 ad.ShowDialog();
+            }*/
+            if (mainForm != null)
+            {
+                mainForm.loadForm(new AccountDetails());
+            }
+            else
+            {
+                MessageBox.Show("Main form not found.");
             }
         }
 
         // this func is executed when the user click subjects button
         private void btnSubject_Click(object sender, EventArgs e)
         {
-            this.Close();
-            using (Subjects s = new Subjects())
+          /*  this.Close();
+            mainForm.loadForm(new Subjects()); // Use the loadForm method of the Main form
+*/
+            if (mainForm != null)
             {
-                s.ShowDialog();
+                mainForm.loadForm(new Subjects());
+            }
+            else
+            {
+                MessageBox.Show("Main form not found.");
             }
         }
     }

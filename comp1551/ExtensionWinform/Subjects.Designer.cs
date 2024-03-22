@@ -47,7 +47,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(293, 47);
+            label1.Location = new Point(488, 45);
             label1.Name = "label1";
             label1.Size = new Size(199, 38);
             label1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // lblCurrentSubject1
             // 
             lblCurrentSubject1.AutoSize = true;
-            lblCurrentSubject1.Location = new Point(63, 138);
+            lblCurrentSubject1.Location = new Point(261, 193);
             lblCurrentSubject1.Name = "lblCurrentSubject1";
             lblCurrentSubject1.Size = new Size(152, 25);
             lblCurrentSubject1.TabIndex = 1;
@@ -64,14 +64,14 @@
             // 
             // txtCurrentSubject1
             // 
-            txtCurrentSubject1.Location = new Point(221, 135);
+            txtCurrentSubject1.Location = new Point(419, 190);
             txtCurrentSubject1.Name = "txtCurrentSubject1";
             txtCurrentSubject1.Size = new Size(150, 31);
             txtCurrentSubject1.TabIndex = 2;
             // 
             // txtCurrentSubject2
             // 
-            txtCurrentSubject2.Location = new Point(577, 135);
+            txtCurrentSubject2.Location = new Point(775, 190);
             txtCurrentSubject2.Name = "txtCurrentSubject2";
             txtCurrentSubject2.Size = new Size(150, 31);
             txtCurrentSubject2.TabIndex = 4;
@@ -79,7 +79,7 @@
             // lblCurrentSubject2
             // 
             lblCurrentSubject2.AutoSize = true;
-            lblCurrentSubject2.Location = new Point(419, 138);
+            lblCurrentSubject2.Location = new Point(617, 193);
             lblCurrentSubject2.Name = "lblCurrentSubject2";
             lblCurrentSubject2.Size = new Size(152, 25);
             lblCurrentSubject2.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // txtPrevSubject2
             // 
-            txtPrevSubject2.Location = new Point(577, 209);
+            txtPrevSubject2.Location = new Point(775, 264);
             txtPrevSubject2.Name = "txtPrevSubject2";
             txtPrevSubject2.Size = new Size(150, 31);
             txtPrevSubject2.TabIndex = 8;
@@ -95,7 +95,7 @@
             // lblPrevSubject2
             // 
             lblPrevSubject2.AutoSize = true;
-            lblPrevSubject2.Location = new Point(405, 212);
+            lblPrevSubject2.Location = new Point(603, 267);
             lblPrevSubject2.Name = "lblPrevSubject2";
             lblPrevSubject2.Size = new Size(161, 25);
             lblPrevSubject2.TabIndex = 7;
@@ -103,7 +103,7 @@
             // 
             // txtPrevSubject1
             // 
-            txtPrevSubject1.Location = new Point(221, 209);
+            txtPrevSubject1.Location = new Point(419, 264);
             txtPrevSubject1.Name = "txtPrevSubject1";
             txtPrevSubject1.Size = new Size(150, 31);
             txtPrevSubject1.TabIndex = 6;
@@ -111,7 +111,7 @@
             // lblPrevSubject1
             // 
             lblPrevSubject1.AutoSize = true;
-            lblPrevSubject1.Location = new Point(63, 212);
+            lblPrevSubject1.Location = new Point(261, 267);
             lblPrevSubject1.Name = "lblPrevSubject1";
             lblPrevSubject1.Size = new Size(161, 25);
             lblPrevSubject1.TabIndex = 5;
@@ -119,7 +119,7 @@
             // 
             // txtSubject2
             // 
-            txtSubject2.Location = new Point(577, 282);
+            txtSubject2.Location = new Point(775, 337);
             txtSubject2.Name = "txtSubject2";
             txtSubject2.Size = new Size(150, 31);
             txtSubject2.TabIndex = 12;
@@ -127,7 +127,7 @@
             // lblSubject2
             // 
             lblSubject2.AutoSize = true;
-            lblSubject2.Location = new Point(477, 285);
+            lblSubject2.Location = new Point(675, 340);
             lblSubject2.Name = "lblSubject2";
             lblSubject2.Size = new Size(89, 25);
             lblSubject2.TabIndex = 11;
@@ -135,7 +135,7 @@
             // 
             // txtSubject1
             // 
-            txtSubject1.Location = new Point(221, 282);
+            txtSubject1.Location = new Point(419, 337);
             txtSubject1.Name = "txtSubject1";
             txtSubject1.Size = new Size(150, 31);
             txtSubject1.TabIndex = 10;
@@ -143,7 +143,7 @@
             // lblSubject1
             // 
             lblSubject1.AutoSize = true;
-            lblSubject1.Location = new Point(121, 282);
+            lblSubject1.Location = new Point(319, 337);
             lblSubject1.Name = "lblSubject1";
             lblSubject1.Size = new Size(89, 25);
             lblSubject1.TabIndex = 9;
@@ -153,7 +153,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 396);
+            ClientSize = new Size(1178, 544);
             Controls.Add(txtSubject2);
             Controls.Add(lblSubject2);
             Controls.Add(txtSubject1);
@@ -167,6 +167,7 @@
             Controls.Add(txtCurrentSubject1);
             Controls.Add(lblCurrentSubject1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Subjects";
             Text = "Subjects";
             Load += Subjects_Load;

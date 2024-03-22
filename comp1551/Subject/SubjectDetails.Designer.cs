@@ -51,9 +51,9 @@
             panel1.Controls.Add(btnEditSubject);
             panel1.Controls.Add(btnAddSubject);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 66);
+            panel1.Location = new Point(0, 139);
             panel1.Name = "panel1";
-            panel1.Size = new Size(985, 98);
+            panel1.Size = new Size(1200, 98);
             panel1.TabIndex = 5;
             // 
             // btnSearchSubject
@@ -119,17 +119,17 @@
             tableSubject.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableSubject.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableSubject.Dock = DockStyle.Bottom;
-            tableSubject.Location = new Point(0, 164);
+            tableSubject.Location = new Point(0, 237);
             tableSubject.Name = "tableSubject";
             tableSubject.RowHeadersWidth = 62;
-            tableSubject.Size = new Size(985, 325);
+            tableSubject.Size = new Size(1200, 363);
             tableSubject.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(429, 9);
+            label1.Location = new Point(537, 41);
             label1.Name = "label1";
             label1.Size = new Size(130, 45);
             label1.TabIndex = 6;
@@ -139,7 +139,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(985, 489);
+            ClientSize = new Size(1200, 600);
             ControlBox = false;
             Controls.Add(label1);
             Controls.Add(panel1);

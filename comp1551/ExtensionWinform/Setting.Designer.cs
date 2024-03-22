@@ -38,7 +38,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(319, 22);
+            label1.Location = new Point(528, 45);
             label1.Name = "label1";
             label1.Size = new Size(132, 38);
             label1.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // btnAccount
             // 
-            btnAccount.Location = new Point(187, 75);
+            btnAccount.Location = new Point(386, 132);
             btnAccount.Name = "btnAccount";
             btnAccount.Size = new Size(400, 100);
             btnAccount.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // btnSubject
             // 
-            btnSubject.Location = new Point(187, 204);
+            btnSubject.Location = new Point(386, 295);
             btnSubject.Name = "btnSubject";
             btnSubject.Size = new Size(400, 100);
             btnSubject.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(187, 332);
+            btnLogout.Location = new Point(386, 466);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(400, 100);
             btnLogout.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(786, 450);
+            ClientSize = new Size(1200, 600);
             ControlBox = false;
             Controls.Add(btnLogout);
             Controls.Add(btnSubject);

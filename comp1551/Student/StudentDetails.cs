@@ -209,6 +209,8 @@ namespace comp1551.Student
                 ac.lbl = "Add New Student";
                 ac.ShowDialog(); // Show the AddStudent form as a dialog
             }
+
+
         }
 
         // this func will be exectued when the user click 'Edit' btn

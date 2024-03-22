@@ -38,6 +38,7 @@
             btnEditUser = new Button();
             btnAddUser = new Button();
             tableUser = new DataGridView();
+            lblUsers = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tableUser).BeginInit();
             SuspendLayout();
@@ -51,10 +52,10 @@
             panel1.Controls.Add(btnDeleteUser);
             panel1.Controls.Add(btnEditUser);
             panel1.Controls.Add(btnAddUser);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 121);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1068, 98);
+            panel1.Size = new Size(1178, 98);
             panel1.TabIndex = 5;
             // 
             // comboBoxFilter
@@ -128,19 +129,31 @@
             tableUser.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableUser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableUser.Dock = DockStyle.Bottom;
-            tableUser.Location = new Point(0, 125);
+            tableUser.Location = new Point(0, 219);
             tableUser.Name = "tableUser";
             tableUser.RowHeadersWidth = 62;
-            tableUser.Size = new Size(1068, 325);
+            tableUser.Size = new Size(1178, 325);
             tableUser.TabIndex = 4;
+            // 
+            // lblUsers
+            // 
+            lblUsers.AutoSize = true;
+            lblUsers.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsers.Location = new Point(542, 25);
+            lblUsers.Name = "lblUsers";
+            lblUsers.Size = new Size(87, 45);
+            lblUsers.TabIndex = 6;
+            lblUsers.Text = "User";
             // 
             // UserDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1068, 450);
+            ClientSize = new Size(1178, 544);
+            Controls.Add(lblUsers);
             Controls.Add(panel1);
             Controls.Add(tableUser);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "UserDetails";
             Text = "UserDetails";
             Load += UserDetails_Load;
@@ -148,6 +161,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tableUser).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -161,5 +175,6 @@
         private Button btnAddUser;
         private DataGridView tableUser;
         private ComboBox comboBoxFilter;
+        private Label lblUsers;
     }
 }

@@ -27,7 +27,8 @@ namespace comp1551
 
         private void Main_Load(object sender, EventArgs e)
         {
-            loadForm(new MainPage());
+            MainPage mainPageForm = new MainPage(this); // Pass a reference to the Main form
+            loadForm(mainPageForm);
             lblUsername.Text = GlobalVariables.UserName;
         }
 
@@ -64,7 +65,8 @@ namespace comp1551
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            loadForm(new MainPage());
+            MainPage mainPageForm = new MainPage(this); // Pass a reference to the Main form
+            loadForm(mainPageForm);
         }
 
         private void btnSubject_Click(object sender, EventArgs e)
@@ -84,7 +86,8 @@ namespace comp1551
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            loadForm(new Setting());
+            Setting SettingForm = new Setting(this); // Pass a reference to the Main form
+            loadForm(SettingForm);
         }
 
         private void mainpanel_Paint(object sender, PaintEventArgs e)

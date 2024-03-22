@@ -375,9 +375,9 @@ namespace comp1551.Teacher
             panel1.Controls.Add(btnEditTeacher);
             panel1.Controls.Add(btnAddTeacher);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 110);
+            panel1.Location = new Point(0, 114);
             panel1.Name = "panel1";
-            panel1.Size = new Size(973, 98);
+            panel1.Size = new Size(1200, 98);
             panel1.TabIndex = 5;
             // 
             // btnSearchTeacher
@@ -443,17 +443,17 @@ namespace comp1551.Teacher
             tableTeacher.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableTeacher.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableTeacher.Dock = DockStyle.Bottom;
-            tableTeacher.Location = new Point(0, 208);
+            tableTeacher.Location = new Point(0, 212);
             tableTeacher.Name = "tableTeacher";
             tableTeacher.RowHeadersWidth = 62;
-            tableTeacher.Size = new Size(973, 325);
+            tableTeacher.Size = new Size(1200, 388);
             tableTeacher.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(409, 31);
+            label1.Location = new Point(543, 39);
             label1.Name = "label1";
             label1.Size = new Size(134, 45);
             label1.TabIndex = 6;
@@ -461,7 +461,7 @@ namespace comp1551.Teacher
             // 
             // TeacherDetails
             // 
-            ClientSize = new Size(973, 533);
+            ClientSize = new Size(1200, 600);
             ControlBox = false;
             Controls.Add(label1);
             Controls.Add(panel1);

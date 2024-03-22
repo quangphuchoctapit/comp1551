@@ -311,10 +311,10 @@
     <value>Bottom</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 74</value>
+    <value>0, 125</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1094, 98</value>
+    <value>1200, 127</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -335,13 +335,13 @@
     <value>Bottom</value>
   </data>
   <data name="tableStudent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 172</value>
+    <value>0, 252</value>
   </data>
   <data name="tableStudent.RowHeadersWidth" type="System.Int32, mscorlib">
     <value>62</value>
   </data>
   <data name="tableStudent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1094, 325</value>
+    <value>1200, 348</value>
   </data>
   <data name="tableStudent.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -365,7 +365,7 @@
     <value>Segoe UI, 16pt, style=Bold</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>450, 9</value>
+    <value>508, 44</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 45</value>
@@ -395,7 +395,7 @@
     <value>10, 25</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1094, 497</value>
+    <value>1200, 600</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>StudentDetails</value>

@@ -21,18 +21,24 @@ namespace comp1551.Account
         private byte[] imageBytes;  // a byte array to store the image data
 
         // event handler when the 'Upload' link is clicked
+        // event handler when the 'Upload' link is clicked
         private void linkLblAccountUpload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             DialogResult result = fileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                // retrieve the user file image
-                pictureboxAccount.BackgroundImage = Image.FromFile(fileDialog.FileName);
-                pictureboxAccount.BackgroundImageLayout = ImageLayout.Zoom;
-                imageBytes = ImageToByteList(pictureboxAccount.BackgroundImage);
+                // Load the selected image into the PictureBox
+                using (Image tempImage = Image.FromFile(fileDialog.FileName))
+                {
+                    pictureboxAccount.BackgroundImage = new Bitmap(tempImage);
+                    pictureboxAccount.BackgroundImageLayout = ImageLayout.Zoom;
+                }
             }
         }
+
+
+
 
         // event handler when the form is loaded
         private void AccountDetails_Load(object sender, EventArgs e)
@@ -62,26 +68,21 @@ namespace comp1551.Account
                     txtAccountTelephone.Text = userRow["telephone"].ToString();
 
                     // check if the 'image' field is not null and not an empty string, then load the image
-                    if (userRow["image"] != DBNull.Value)
+                    if (userDetails.Rows[0]["Image"] != DBNull.Value && !string.IsNullOrEmpty(userDetails.Rows[0]["Image"].ToString()))
                     {
-                        string imageBase64 = userRow["image"].ToString();
-                        if (!string.IsNullOrEmpty(imageBase64))
+                        // Convert the Base64 string to an Image and set it as the PictureBox background image
+                        string imageBase64 = userDetails.Rows[0]["Image"].ToString();
+                        Image image = ConvertBase64ToImage(imageBase64);
+                        if (image != null)
                         {
-                            Image image = ConvertBase64ToImage(imageBase64);
-                            if (image != null)
-                            {
-                                // display image to the user interface
-                                pictureboxAccount.BackgroundImage = image;
-                                pictureboxAccount.BackgroundImageLayout = ImageLayout.Zoom;
-                            }
+                            pictureboxAccount.BackgroundImage = image;
+                            pictureboxAccount.BackgroundImageLayout = ImageLayout.Zoom;
                         }
                     }
                     else
                     {
                         pictureboxAccount.BackgroundImage = null;
-                        pictureboxAccount.BackgroundImageLayout = ImageLayout.Zoom;
                     }
-
 
                     // using OOP to use some methods from class UserClass
                     UoGSystem system = new UoGSystem();
@@ -122,6 +123,7 @@ namespace comp1551.Account
 
 
 
+
         // event handler when the 'Edit Account' button is clicked
         private void btnEditAccount_Click(object sender, EventArgs e)
         {
@@ -148,10 +150,17 @@ namespace comp1551.Account
                 }
                 else
                 {
-                    // for roles other than admin, execute the update query directly
-                    string base64Image = ConvertImageToBase64(pictureboxAccount.BackgroundImage);
+                    // Check if a new image is uploaded
+                    string base64Image = null;
+                    if (pictureboxAccount.BackgroundImage != null)
+                    {
+                        // Convert the image to Base64 string
+                        base64Image = ConvertImageToBase64(pictureboxAccount.BackgroundImage);
+                    }
+
+                    // Execute the update query directly
                     string updateQueryUser = $"UPDATE User SET Name = '{txtAccountName.Text}', Image = '{base64Image}', " +
-                                             $"Email = '{txtAccountEmail.Text}', Telephone = '{txtAccountTelephone.Text}' " +
+                                             $"Email = '{txtAccountEmail.Text}', Telephone = '{txtAccountTelephone.Text}', Password = '{txtAccountPassword.Text}' " +
                                              $"WHERE Id = '{GlobalVariables.UserId}'";
                     db.ExecuteNonQuery(updateQueryUser);
                     MessageBox.Show("Account updated successfully.");
@@ -166,6 +175,7 @@ namespace comp1551.Account
                 db.CloseConnection();  // close db connection in the finally block
             }
         }
+
 
         // method to convert Base64 string to Image
         private Image ConvertBase64ToImage(string base64String)
@@ -186,26 +196,36 @@ namespace comp1551.Account
             }
         }
 
-        // method to convert
 
-        // Method to convert Image to Base64 string
+        // method to convert Image to Base64 string
+        // method to convert Image to Base64 string
         private string ConvertImageToBase64(Image img)
         {
-            if (img == null)
-            {
-                return null;
-            }
+            if (img == null) return null;
 
-            using (MemoryStream ms = new MemoryStream())
+            try
             {
-                img.Save(ms, ImageFormat.Jpeg);
-                byte[] imageBytes = ms.ToArray();
-                string base64String = Convert.ToBase64String(imageBytes);
-                return base64String;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    // Save the image to the memory stream using PNG format
+                    img.Save(ms, ImageFormat.Png);
+
+                    // Convert the image bytes to a base64 string
+                    byte[] imageBytes = ms.ToArray();
+                    return Convert.ToBase64String(imageBytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error converting image to base64: {ex.Message}");
+                return null;
             }
         }
 
-        // Method to convert Image to byte array
+
+
+
+        // method to convert Image to byte array
         private byte[] ImageToByteList(Image img)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -214,5 +234,6 @@ namespace comp1551.Account
                 return ms.ToArray();
             }
         }
+
     }
 }

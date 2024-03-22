@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacultyDetails));
             tableFaculty = new DataGridView();
             panel1 = new Panel();
+            label1 = new Label();
             btnSearchFaculty = new Button();
             txtSearchFaculty = new TextBox();
             lblSearchFaculty = new Label();
             btnDeleteFaculty = new Button();
             btnEditFaculty = new Button();
             btnAddFaculty = new Button();
-            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)tableFaculty).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -48,10 +48,10 @@
             tableFaculty.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableFaculty.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tableFaculty.Dock = DockStyle.Bottom;
-            tableFaculty.Location = new Point(0, 216);
+            tableFaculty.Location = new Point(0, 275);
             tableFaculty.Name = "tableFaculty";
             tableFaculty.RowHeadersWidth = 62;
-            tableFaculty.Size = new Size(896, 325);
+            tableFaculty.Size = new Size(1200, 325);
             tableFaculty.TabIndex = 2;
             // 
             // panel1
@@ -66,14 +66,24 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(896, 193);
+            panel1.Size = new Size(1200, 193);
             panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(520, 29);
+            label1.Name = "label1";
+            label1.Size = new Size(125, 45);
+            label1.TabIndex = 4;
+            label1.Text = "Faculty";
             // 
             // btnSearchFaculty
             // 
             btnSearchFaculty.BackgroundImage = (Image)resources.GetObject("btnSearchFaculty.BackgroundImage");
             btnSearchFaculty.BackgroundImageLayout = ImageLayout.Zoom;
-            btnSearchFaculty.Location = new Point(828, 113);
+            btnSearchFaculty.Location = new Point(853, 113);
             btnSearchFaculty.Name = "btnSearchFaculty";
             btnSearchFaculty.Size = new Size(40, 40);
             btnSearchFaculty.TabIndex = 3;
@@ -82,7 +92,7 @@
             // 
             // txtSearchFaculty
             // 
-            txtSearchFaculty.Location = new Point(628, 115);
+            txtSearchFaculty.Location = new Point(653, 115);
             txtSearchFaculty.Name = "txtSearchFaculty";
             txtSearchFaculty.Size = new Size(182, 31);
             txtSearchFaculty.TabIndex = 2;
@@ -90,7 +100,7 @@
             // lblSearchFaculty
             // 
             lblSearchFaculty.AutoSize = true;
-            lblSearchFaculty.Location = new Point(495, 118);
+            lblSearchFaculty.Location = new Point(520, 118);
             lblSearchFaculty.Name = "lblSearchFaculty";
             lblSearchFaculty.Size = new Size(127, 25);
             lblSearchFaculty.TabIndex = 1;
@@ -98,7 +108,7 @@
             // 
             // btnDeleteFaculty
             // 
-            btnDeleteFaculty.Location = new Point(338, 92);
+            btnDeleteFaculty.Location = new Point(363, 92);
             btnDeleteFaculty.Name = "btnDeleteFaculty";
             btnDeleteFaculty.Size = new Size(140, 70);
             btnDeleteFaculty.TabIndex = 0;
@@ -108,7 +118,7 @@
             // 
             // btnEditFaculty
             // 
-            btnEditFaculty.Location = new Point(174, 92);
+            btnEditFaculty.Location = new Point(199, 92);
             btnEditFaculty.Name = "btnEditFaculty";
             btnEditFaculty.Size = new Size(140, 70);
             btnEditFaculty.TabIndex = 0;
@@ -118,7 +128,7 @@
             // 
             // btnAddFaculty
             // 
-            btnAddFaculty.Location = new Point(11, 92);
+            btnAddFaculty.Location = new Point(36, 92);
             btnAddFaculty.Name = "btnAddFaculty";
             btnAddFaculty.Size = new Size(140, 70);
             btnAddFaculty.TabIndex = 0;
@@ -126,21 +136,11 @@
             btnAddFaculty.UseVisualStyleBackColor = true;
             btnAddFaculty.Click += btnAddFaculty_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(397, 22);
-            label1.Name = "label1";
-            label1.Size = new Size(125, 45);
-            label1.TabIndex = 4;
-            label1.Text = "Faculty";
-            // 
             // FacultyDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 541);
+            ClientSize = new Size(1200, 600);
             ControlBox = false;
             Controls.Add(tableFaculty);
             Controls.Add(panel1);

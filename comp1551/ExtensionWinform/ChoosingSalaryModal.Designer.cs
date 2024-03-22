@@ -38,7 +38,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(280, 31);
+            label1.Location = new Point(542, 48);
             label1.Name = "label1";
             label1.Size = new Size(123, 38);
             label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(113, 96);
+            label2.Location = new Point(207, 93);
             label2.Name = "label2";
             label2.Size = new Size(147, 32);
             label2.TabIndex = 1;
@@ -58,9 +58,9 @@
             // 
             btnTeacherSalary.BackColor = Color.LightGray;
             btnTeacherSalary.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnTeacherSalary.Location = new Point(193, 150);
+            btnTeacherSalary.Location = new Point(446, 158);
             btnTeacherSalary.Name = "btnTeacherSalary";
-            btnTeacherSalary.Size = new Size(268, 77);
+            btnTeacherSalary.Size = new Size(300, 100);
             btnTeacherSalary.TabIndex = 2;
             btnTeacherSalary.Text = "Teacher Salary";
             btnTeacherSalary.UseVisualStyleBackColor = false;
@@ -70,9 +70,9 @@
             // 
             btnAdminSalary.BackColor = Color.LightGray;
             btnAdminSalary.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAdminSalary.Location = new Point(193, 233);
+            btnAdminSalary.Location = new Point(446, 309);
             btnAdminSalary.Name = "btnAdminSalary";
-            btnAdminSalary.Size = new Size(268, 77);
+            btnAdminSalary.Size = new Size(300, 100);
             btnAdminSalary.TabIndex = 3;
             btnAdminSalary.Text = "Admin Salary";
             btnAdminSalary.UseVisualStyleBackColor = false;
@@ -82,11 +82,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(668, 319);
+            ClientSize = new Size(1200, 600);
+            ControlBox = false;
             Controls.Add(btnAdminSalary);
             Controls.Add(btnTeacherSalary);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ChoosingSalaryModal";
             Text = "ChoosingModal";
             Load += ChoosingSalaryModal_Load;

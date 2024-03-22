@@ -46,7 +46,7 @@
             // 
             mainpanel.Location = new Point(389, 70);
             mainpanel.Name = "mainpanel";
-            mainpanel.Size = new Size(1270, 611);
+            mainpanel.Size = new Size(1200, 600);
             mainpanel.TabIndex = 0;
             // 
             // btnStudent
@@ -103,7 +103,6 @@
             btnFaculty.Text = "Faculty";
             btnFaculty.UseVisualStyleBackColor = true;
             btnFaculty.Click += btnFaculty_Click;
-
             // 
             // btnClass
             // 
@@ -114,7 +113,6 @@
             btnClass.Text = "Class";
             btnClass.UseVisualStyleBackColor = true;
             btnClass.Click += btnClass_Click;
-
             // 
             // btnSubject
             // 
@@ -125,7 +123,6 @@
             btnSubject.Text = "Subject";
             btnSubject.UseVisualStyleBackColor = true;
             btnSubject.Click += btnSubject_Click;
-
             // 
             // btnDashboard
             // 
