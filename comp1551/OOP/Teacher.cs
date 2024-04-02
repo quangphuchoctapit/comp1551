@@ -9,13 +9,18 @@ namespace comp1551
     // derived class representing teacher
     public class TeacherClass : UserClass
     {
-        private decimal Salary { get; set; }
-        private string Subject1 { get; set; }
-        private string Subject2 { get; set; }
-        private string FacultyName { get; set; }
-        private int FacultyId { get; set; }
-        private string Qualifications { get; set; }
-        private string Image { get; set; }
+        public override void View()
+        {
+
+        }
+
+        private decimal Salary;
+        private string Subject1;
+        private string Subject2;
+        private string FacultyName;
+        private int FacultyId;
+        private string Qualifications;
+        private string Image;
 
         // Accessor methods
         public decimal GetSalary() => Salary;
@@ -40,13 +45,18 @@ namespace comp1551
         public void SetImage(string image) => Image = image;
     }
 
-    public class TeacherManage
+    public class TeacherManage : UserClass
     {
         private Database database;
 
         public TeacherManage(Database db)
         {
             database = db;
+        }
+
+        public override void View()
+        {
+            List<TeacherClass> teachers = GetAllTeachers();
         }
 
         // method to add a new teacher to the database
@@ -62,7 +72,7 @@ namespace comp1551
                 int emailCount = database.GetCount(checkEmailQuery);
                 if (emailCount > 0)
                 {
-                    Console.WriteLine("Email already exists. Please choose a different one.");
+                    MessageBox.Show("Email already exists. Please choose a different one.");
                     return;
                 }
 
@@ -106,9 +116,11 @@ namespace comp1551
             try
             {
                 database.OpenConnection();
-
-                // update the user information
-                string updateQueryUser = $"UPDATE User SET Name = '{updatedTeacher.Name}', " +
+                // check if the email already exists in the database
+                string checkEmailQuery = $"SELECT COUNT(*) FROM User WHERE Email = '{updatedTeacher.Email}'";
+                int emailCount = database.GetCount(checkEmailQuery);
+                    // update the user information
+                    string updateQueryUser = $"UPDATE User SET Name = '{updatedTeacher.Name}', " +
                     $"Email = '{updatedTeacher.Email}', Telephone = '{updatedTeacher.Telephone}', " +
                     $"Image = '{updatedTeacher.GetImage()}' " +
                     $"WHERE Id = {id}";
@@ -300,6 +312,58 @@ namespace comp1551
             }
 
             return subjects;
+        }
+
+
+
+        public List<TeacherClass> GetAllTeacherSearch(string searchText)
+        {
+            List<TeacherClass> users = new List<TeacherClass>();
+            try
+            {
+                database.OpenConnection();
+                // construct the sql query with a WHERE clause to filter by name or email
+                string query = $"SELECT * FROM user WHERE role = 'teacher' AND name LIKE '%{searchText}%'";
+
+                DataTable dataTable = database.ExecuteQuery(query);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    // convert the role value to lowercase for consistency
+                    string roleString = row["Role"].ToString().ToLower();
+
+                    // parse the lowercase role string to the UserRole enum
+                    if (Enum.TryParse<UserRole>(roleString, true, out UserRole role))
+                    {
+                        // create a user object based on the data retrieved from the database
+                        TeacherClass user = new TeacherClass
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            Name = row["Name"].ToString(),
+                            Email = row["Email"].ToString(),
+                            Telephone = row["Telephone"].ToString(),
+                            Role = role
+                        };
+
+                        users.Add(user);
+                    }
+                    else
+                    {
+                        // handle case where role string doesn't match any enum value
+                        MessageBox.Show($"Error: Invalid role value '{roleString}' for user with ID {row["Id"]}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                database.CloseConnection();
+            }
+
+            return users;
         }
     }
 }

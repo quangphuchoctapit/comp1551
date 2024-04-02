@@ -107,9 +107,14 @@ namespace comp1551.Class
                     nameColumn.DataPropertyName = "Name";
                     nameColumn.HeaderText = "Name";
 
+                    DataGridViewTextBoxColumn maxCapacityColumn = new DataGridViewTextBoxColumn();
+                    maxCapacityColumn.DataPropertyName = "maxCapacity";
+                    maxCapacityColumn.HeaderText = "Max Capacity";
+
                     // Add columns to the DataGridView
                     tableClass.Columns.Add(idColumn);
                     tableClass.Columns.Add(nameColumn);
+                    tableClass.Columns.Add(maxCapacityColumn);
                 }
                 else
                 {

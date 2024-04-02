@@ -120,7 +120,6 @@ namespace comp1551.ExtensionWinform
                     // get student information from the form
                     int classItemId = selectedClass.Id;
 
-                    int studentGrade = Convert.ToInt32(txtGrade.Text);
 
                     // insert the student's information into the faculty_subjects table
                     try
@@ -130,8 +129,8 @@ namespace comp1551.ExtensionWinform
                         db.OpenConnection();
 
                         // create a new row in the 'student' table
-                        string insertStudentQuery = $"INSERT INTO student (classId, grade, facultyId, userId) " +
-                            $"VALUES ({classItemId}, {studentGrade}, {facultyItemId} , {userId})";
+                        string insertStudentQuery = $"INSERT INTO student (classId, facultyId, userId) " +
+                            $"VALUES ({classItemId}, {facultyItemId} , {userId})";
 
                         // execute the query to add the student to student
                         db.ExecuteNonQuery(insertStudentQuery);

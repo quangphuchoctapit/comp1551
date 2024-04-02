@@ -35,8 +35,8 @@
             txtSearchUser = new TextBox();
             lblSearchClass = new Label();
             btnDeleteUser = new Button();
-            btnEditUser = new Button();
-            btnAddUser = new Button();
+            btnAddTeacher = new Button();
+            btnAddStudent = new Button();
             tableUser = new DataGridView();
             lblUsers = new Label();
             panel1.SuspendLayout();
@@ -50,8 +50,8 @@
             panel1.Controls.Add(txtSearchUser);
             panel1.Controls.Add(lblSearchClass);
             panel1.Controls.Add(btnDeleteUser);
-            panel1.Controls.Add(btnEditUser);
-            panel1.Controls.Add(btnAddUser);
+            panel1.Controls.Add(btnAddTeacher);
+            panel1.Controls.Add(btnAddStudent);
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(0, 121);
             panel1.Name = "panel1";
@@ -105,23 +105,25 @@
             btnDeleteUser.UseVisualStyleBackColor = true;
             btnDeleteUser.Click += btnDeleteUser_Click;
             // 
-            // btnEditUser
+            // btnAddTeacher
             // 
-            btnEditUser.Location = new Point(175, 12);
-            btnEditUser.Name = "btnEditUser";
-            btnEditUser.Size = new Size(140, 70);
-            btnEditUser.TabIndex = 0;
-            btnEditUser.Text = "Edit User";
-            btnEditUser.UseVisualStyleBackColor = true;
+            btnAddTeacher.Location = new Point(175, 12);
+            btnAddTeacher.Name = "btnAddTeacher";
+            btnAddTeacher.Size = new Size(140, 70);
+            btnAddTeacher.TabIndex = 0;
+            btnAddTeacher.Text = "Add Teacher";
+            btnAddTeacher.UseVisualStyleBackColor = true;
+            btnAddTeacher.Click += btnAddTeacher_Click;
             // 
-            // btnAddUser
+            // btnAddStudent
             // 
-            btnAddUser.Location = new Point(12, 12);
-            btnAddUser.Name = "btnAddUser";
-            btnAddUser.Size = new Size(140, 70);
-            btnAddUser.TabIndex = 0;
-            btnAddUser.Text = "Add User";
-            btnAddUser.UseVisualStyleBackColor = true;
+            btnAddStudent.Location = new Point(12, 12);
+            btnAddStudent.Name = "btnAddStudent";
+            btnAddStudent.Size = new Size(140, 70);
+            btnAddStudent.TabIndex = 0;
+            btnAddStudent.Text = "Add Student";
+            btnAddStudent.UseVisualStyleBackColor = true;
+            btnAddStudent.Click += btnAddStudent_Click;
             // 
             // tableUser
             // 
@@ -171,8 +173,8 @@
         private TextBox txtSearchUser;
         private Label lblSearchClass;
         private Button btnDeleteUser;
-        private Button btnEditUser;
-        private Button btnAddUser;
+        private Button btnAddTeacher;
+        private Button btnAddStudent;
         private DataGridView tableUser;
         private ComboBox comboBoxFilter;
         private Label lblUsers;

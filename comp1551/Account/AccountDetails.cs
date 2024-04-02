@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using static comp1551.UserClass;
 using static comp1551.utils;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace comp1551.Account
 {
@@ -134,6 +135,38 @@ namespace comp1551.Account
                 UoGSystem system = new UoGSystem();
                 if (GlobalVariables.UserRole == "admin")
                 {
+                    if (string.IsNullOrEmpty(txtAccountName.Text) || string.IsNullOrEmpty(txtAccountEmail.Text) ||
+                        string.IsNullOrEmpty(txtAccountTelephone.Text) || string.IsNullOrEmpty(txtAccountPassword.Text) ||
+                        string.IsNullOrEmpty(txtAccountSalary.Text) || string.IsNullOrEmpty(txtAccountWorkingHours.Text))
+                    {
+                        MessageBox.Show("Please fill in all the fields.");
+                        return;  // Exit the method if any field is empty
+                    }
+
+                    if (!IsValidPhoneNumber(txtAccountTelephone.Text))
+                    {
+                        MessageBox.Show("Please Enter a valid Telephone Number");
+                        return;
+                    }
+
+                    if (!IsValidEmail(txtAccountEmail.Text))
+                    {
+                        MessageBox.Show("Please Enter a valid Email");
+                        return;
+                    }
+
+                    if (!decimal.TryParse(txtAccountSalary.Text, out decimal salary) || salary < 0)
+                    {
+                        MessageBox.Show("Please enter a valid non-negative salary.");
+                        return;  // Exit the method if salary is not valid
+                    }
+
+                    if (!int.TryParse(txtAccountWorkingHours.Text, out int workingHours) || workingHours < 0)
+                    {
+                        MessageBox.Show("Please enter a valid non-negative working hours.");
+                        return;  // Exit the method if working hours is not valid
+                    }
+
                     AdminClass updatedAdmin = new AdminClass
                     {
                         Name = txtAccountName.Text,
@@ -150,6 +183,24 @@ namespace comp1551.Account
                 }
                 else
                 {
+                    if (string.IsNullOrEmpty(txtAccountName.Text) || string.IsNullOrEmpty(txtAccountEmail.Text) ||
+                        string.IsNullOrEmpty(txtAccountTelephone.Text) || string.IsNullOrEmpty(txtAccountPassword.Text)
+                       )
+                    {
+                        MessageBox.Show("Please fill in all the fields.");
+                        return;  // Exit the method if any field is empty
+                    }
+                    if (!IsValidPhoneNumber(txtAccountTelephone.Text))
+                    {
+                        MessageBox.Show("Please Enter a valid Telephone Number");
+                        return;
+                    }
+
+                    if (!IsValidEmail(txtAccountEmail.Text))
+                    {
+                        MessageBox.Show("Please Enter a valid Email");
+                        return;
+                    }
                     // Check if a new image is uploaded
                     string base64Image = null;
                     if (pictureboxAccount.BackgroundImage != null)
@@ -175,6 +226,7 @@ namespace comp1551.Account
                 db.CloseConnection();  // close db connection in the finally block
             }
         }
+
 
 
         // method to convert Base64 string to Image

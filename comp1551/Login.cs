@@ -28,6 +28,12 @@ namespace comp1551
                 DataTable result = db.ExecuteQuery(query);
 
                 bool userFound = false;
+                if (!IsValidPhoneNumber(txtTelephone.Text))
+                {
+                    MessageBox.Show("Please Enter a valid Telephone Number");
+                    return;
+                }
+
                 foreach (DataRow row in result.Rows)
                 {
                     // assign some variables to retreive user inputs
@@ -36,6 +42,7 @@ namespace comp1551
                     string password = row["password"].ToString();
                     string userID = row["id"].ToString();
                     string username = row["name"].ToString();
+
 
                     // if the user inputs (telephone and password) match the database result, assign the global vairables: GlobalVariables.UserId and GlobalVariables.UserRole to later on identify the current logged in user
                     if (txtTelephone.Text == telephone && txtPassword.Text == password)

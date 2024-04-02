@@ -168,6 +168,7 @@
             Controls.Add(lblMainPage);
             FormBorderStyle = FormBorderStyle.None;
             Name = "MainPage";
+            Load += MainPage_Load;
             ResumeLayout(false);
             PerformLayout();
         }

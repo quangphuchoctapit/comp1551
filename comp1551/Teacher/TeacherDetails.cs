@@ -12,6 +12,7 @@ namespace comp1551.Teacher
         public TeacherDetails()
         {
             InitializeComponent();
+            LoadTeacherData();
         }
 
         // define a variable to check the current user role

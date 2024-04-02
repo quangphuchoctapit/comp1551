@@ -1,6 +1,7 @@
 ﻿using comp1551.ExtensionWinform;
 using comp1551.Student;
 using comp1551.Teacher;
+using static comp1551.utils;
 using System;
 using System.Windows.Forms;
 
@@ -49,6 +50,16 @@ namespace comp1551
                     MessageBox.Show("Please enter telephone, email, name, and password.");
                     return;
                 }
+                if (!IsValidPhoneNumber(telephone))
+                {
+                    MessageBox.Show("Please Enter a valid Telephone Number");
+                    return;
+                }
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Please Enter a valid Email");
+                    return;
+                }
 
                 // Check if the telephone already exists in the database
                 string checkTelephoneQuery = $"SELECT COUNT(*) FROM user WHERE telephone = '{telephone}'";
@@ -81,8 +92,6 @@ namespace comp1551
                 // Get the ID of the newly inserted user
                 string getUserIdQuery = $"SELECT id FROM user WHERE telephone = '{telephone}'";
                 int userId = db.GetUserId(getUserIdQuery);
-
-                MessageBox.Show("role;" + selectedRole);
                 // if there is result from the above query:  string getUserIdQuery = $"SELECT id FROM user WHERE telephone = '{telephone}'";, the below condition will be executed
                 if (userId > 0)
                 {

@@ -10,13 +10,13 @@ namespace comp1551
     internal class utils
     {
         // validates a phone number using a regular expression
-        public bool IsValidPhoneNumber(string phoneNumber)
+        public static bool IsValidPhoneNumber(string phoneNumber)
         {
             return Regex.IsMatch(phoneNumber, @"^\d{10}$");
         }
 
         // validates an email address using a regular expression
-        public bool IsValidEmail(string email)
+        public static bool IsValidEmail(string email)
         {
             return Regex.IsMatch(email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
         }

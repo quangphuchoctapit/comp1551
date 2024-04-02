@@ -13,6 +13,7 @@ namespace comp1551.Student
         public StudentDetails()
         {
             InitializeComponent();
+            LoadStudentData();
         }
 
         // define variable to check current user role
@@ -317,22 +318,24 @@ namespace comp1551.Student
             {
                 if (tableStudent.CurrentRow != null)
                 {
-                    // Get the selected student from the DataGridView
-                    StudentClass selectedStudent = tableStudent.CurrentRow.DataBoundItem as StudentClass;
+                    DataRowView selectedRowView = tableStudent.CurrentRow.DataBoundItem as DataRowView;
 
-                    // Check if the selectedStudent is not null
-                    if (selectedStudent != null)
+                    // Check if the selected row is bound to a data item
+                    if (selectedRowView != null)
                     {
-                        // Retrieve the ID value from the selected student
-                        int studentId = selectedStudent.Id;
-                        UoGSystem system = new UoGSystem();
-                        system.StudentManage.DeleteStudent(studentId);
-                        LoadStudentData();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No data associated with the selected row.", "Invalid Row", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        // Get the student ID directly from the data source bound to the DataGridView
+                        if (selectedRowView.Row.Table.Columns.Contains("Id"))
+                        {
+                            int studentId = Convert.ToInt32(selectedRowView.Row["Id"]);
+
+                            UoGSystem system = new UoGSystem();
+                            system.StudentManage.DeleteStudent(studentId);
+                            LoadStudentData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("The selected row does not contain an ID value.", "Invalid Row", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
                 else
@@ -347,10 +350,5 @@ namespace comp1551.Student
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            HandleSearchStudent();
-
-        }
     }
-}
+} 

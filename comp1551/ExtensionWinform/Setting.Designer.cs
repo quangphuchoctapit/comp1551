@@ -87,6 +87,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Setting";
             Text = "Setting";
+            Load += Setting_Load;
             ResumeLayout(false);
             PerformLayout();
         }

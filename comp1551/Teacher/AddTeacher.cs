@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using static comp1551.utils;
 using System.Security.Cryptography.X509Certificates;
 using static comp1551.UserClass;
+using comp1551.User;
 
 namespace comp1551.Teacher
 {
@@ -207,11 +208,32 @@ namespace comp1551.Teacher
         // func called when the Add/Update Teacher button is clicked
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
+            // Check if the teacher name, email, and telephone,... fields are empty
+            if (string.IsNullOrWhiteSpace(txtAddTeacherName.Text) ||
+                string.IsNullOrWhiteSpace(txtAddTeacherEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtAddTeacherTelephone.Text) ||
+                string.IsNullOrWhiteSpace(txtAddTeacherSubject1.Text) ||
+                string.IsNullOrWhiteSpace(txtAddTeacherSubject2.Text)
+                )
+            {
+                MessageBox.Show("Please fill in all the required fields.");
+                return;
+            }
+
+            if (!IsValidEmail(txtAddTeacherEmail.Text) || !IsValidPhoneNumber(txtAddTeacherTelephone.Text))
+            {
+                MessageBox.Show("Please enter valid email or phone");
+
+                return;
+            }
+
+
             if (lblAddTeacher.Text == "Add New Teacher")
             {
                 if (listBoxFaculties.SelectedItem == null)
                 {
                     MessageBox.Show("Please select a Faculty before adding the teacher.");
+                    return;
                 }
                 else
                 {
@@ -235,7 +257,6 @@ namespace comp1551.Teacher
 
                         UoGSystem system = new UoGSystem();
                         system.TeacherManage.AddTeacher(newTeacher);
-                        MessageBox.Show("Teacher added successfully.");
                         ClearForm();
                         TeacherDetails teacherDetailsForm = Application.OpenForms["TeacherDetails"] as TeacherDetails;
                         teacherDetailsForm?.LoadTeacherData();
@@ -244,6 +265,13 @@ namespace comp1551.Teacher
                     {
                         MessageBox.Show($"Error adding teacher: {ex.Message}");
                     }
+                    finally
+                    {
+                        TeacherDetails teacherDetailsForm = Application.OpenForms["TeacherDetails"] as TeacherDetails;
+                        teacherDetailsForm?.LoadTeacherData();
+                        UserDetails userDetailForm = Application.OpenForms["UserDetails"] as UserDetails;
+                        userDetailForm?.LoadUserData("user");
+                    }
                 }
             }
             else if (lblAddTeacher.Text == "Update Teacher")
@@ -251,6 +279,7 @@ namespace comp1551.Teacher
                 if (listBoxFaculties.SelectedItem == null)
                 {
                     MessageBox.Show("Please select a Faculty before updating the teacher.");
+                    return;
                 }
                 else
                 {
@@ -273,7 +302,6 @@ namespace comp1551.Teacher
                         updatedTeacher.SetImage(base64Image);
                         UoGSystem system = new UoGSystem();
                         system.TeacherManage.UpdateTeacher(teacherId, updatedTeacher);
-                        MessageBox.Show("Teacher information updated successfully.");
                         this.Close();
                         TeacherDetails teacherDetailsForm = Application.OpenForms["TeacherDetails"] as TeacherDetails;
                         teacherDetailsForm?.LoadTeacherData();
@@ -281,6 +309,13 @@ namespace comp1551.Teacher
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error updating teacher information: {ex.Message}");
+                    }
+                    finally
+                    {
+                        TeacherDetails teacherDetailsForm = Application.OpenForms["TeacherDetails"] as TeacherDetails;
+                        teacherDetailsForm?.LoadTeacherData();
+                        UserDetails userDetailForm = Application.OpenForms["UserDetails"] as UserDetails;
+                        userDetailForm?.LoadUserData("user");
                     }
                 }
             }

@@ -114,10 +114,24 @@ namespace comp1551.Salary
             db.OpenConnection();
             try
             {
+                // Check if Salary textbox is empty
+                if (string.IsNullOrWhiteSpace(txtAddSalaryTeacherSalary.Text))
+                {
+                    MessageBox.Show("Please enter a salary.");
+                    return;
+                }
+
                 // Check if Salary is a valid double
                 if (!double.TryParse(txtAddSalaryTeacherSalary.Text, out double Salary))
                 {
                     MessageBox.Show("Please enter a valid salary.");
+                    return;
+                }
+
+                // Check if the entered salary is negative
+                if (Salary < 0)
+                {
+                    MessageBox.Show("Salary cannot be negative. Please enter a positive value.");
                     return;
                 }
 
@@ -143,6 +157,7 @@ namespace comp1551.Salary
                 db.CloseConnection();
             }
         }
+
 
     }
 }

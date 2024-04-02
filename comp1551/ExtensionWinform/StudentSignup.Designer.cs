@@ -31,8 +31,6 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            txtGrade = new TextBox();
-            label4 = new Label();
             btnConfirm = new Button();
             listboxFaculties = new ListBox();
             listBoxClassName = new ListBox();
@@ -65,22 +63,6 @@
             label3.Size = new Size(56, 25);
             label3.TabIndex = 3;
             label3.Text = "Class:";
-            // 
-            // txtGrade
-            // 
-            txtGrade.Location = new Point(142, 305);
-            txtGrade.Name = "txtGrade";
-            txtGrade.Size = new Size(150, 31);
-            txtGrade.TabIndex = 6;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(56, 305);
-            label4.Name = "label4";
-            label4.Size = new Size(63, 25);
-            label4.TabIndex = 5;
-            label4.Text = "Grade:";
             // 
             // btnConfirm
             // 
@@ -118,8 +100,6 @@
             Controls.Add(listBoxClassName);
             Controls.Add(listboxFaculties);
             Controls.Add(btnConfirm);
-            Controls.Add(txtGrade);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -135,8 +115,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox txtGrade;
-        private Label label4;
         private Button btnConfirm;
         private ListBox listboxFaculties;
         private ListBox listBoxClassName;

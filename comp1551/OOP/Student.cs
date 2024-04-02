@@ -3,12 +3,21 @@ using System.Data;
 using static System.Windows.Forms.Design.AxImporter;
 using System.Text.Json;
 using MySql.Data.MySqlClient;
+using static comp1551.UserClass;
 
 namespace comp1551
 {
     // derived class representing student
     public class StudentClass : UserClass
     {
+
+
+        public override void View()
+        {
+
+        }
+        //   public override string Role { get; set; }
+
         private string currentSubject1;
         public string GetCurrentSubject1() => currentSubject1;
         public void SetCurrentSubject1(string value) => currentSubject1 = value;
@@ -47,13 +56,18 @@ namespace comp1551
 
     }
 
-    public class StudentManage
+    public class StudentManage : UserClass
     {
 
         private Database database;
         public StudentManage(Database db)
         {
             database = db;
+        }
+
+        public override void View()
+        {
+            List<StudentClass> teachers = GetAllStudents();
         }
 
         // Student CRUD operations
@@ -69,7 +83,7 @@ namespace comp1551
                 int emailCount = database.GetCount(checkEmailQuery);
                 if (emailCount > 0)
                 {
-                    Console.WriteLine("Email already exists. Please choose a different one.");
+                    MessageBox.Show("Email already exists. Please choose a different one.");
                     return;
                 }
 
@@ -111,31 +125,35 @@ namespace comp1551
 
         public void UpdateStudent(int id, StudentClass updatedStudent)
         {
-
-            string imageValue = updatedStudent.GetImage() != null ? $"'{updatedStudent.GetImage()}'" : "NULL";
-            updatedStudent.SetImage(imageValue);
-            string updateQueryUser = $"UPDATE User SET Name = '{updatedStudent.Name}', " +
-                $"Email = '{updatedStudent.Email}', Telephone = '{updatedStudent.Telephone}', " +
-                $"Image = {imageValue} WHERE Id = '{id}'";
-
-            // Update the student information
-            string updateQueryStudent = $"UPDATE Student SET FacultyId = '{updatedStudent.GetFacultyId()}', " +
-                $"ClassId = '{updatedStudent.GetClassId()}', " +
-                $"currSubject1 = '{updatedStudent.GetCurrentSubject1()}', " +
-                $"currSubject2 = '{updatedStudent.GetCurrentSubject2()}', " +
-                $"prevSubject1 = '{updatedStudent.GetPreviousSubject1()}', " +
-                $"prevSubject2 = '{updatedStudent.GetPreviousSubject2()}' " +
-                $"WHERE UserId = '{id}'";
-
             try
             {
                 // Open database connection
                 database.OpenConnection();
 
-                // Execute the query to update the User table
-                database.ExecuteNonQuery(updateQueryUser);
+                // Check if the email already exists in the database
+                string checkEmailQuery = $"SELECT COUNT(*) FROM User WHERE Email = '{updatedStudent.Email}'";
+                int emailCount = database.GetCount(checkEmailQuery);
 
-                // Execute the query to update the Student table
+                // Handle NULL values for the image field
+                string imageValue = updatedStudent.GetImage() != null ? $"'{updatedStudent.GetImage()}'" : "NULL";
+                updatedStudent.SetImage(imageValue);
+
+                // Update the user information in the 'User' table
+                string updateQueryUser = $"UPDATE User SET Name = '{updatedStudent.Name}', " +
+                                         $"Email = '{updatedStudent.Email}', Telephone = '{updatedStudent.Telephone}', " +
+                                         $"Image = {imageValue} WHERE Id = '{id}'";
+
+                // Update the student information in the 'Student' table
+                string updateQueryStudent = $"UPDATE Student SET FacultyId = '{updatedStudent.GetFacultyId()}', " +
+                                            $"ClassId = '{updatedStudent.GetClassId()}', " +
+                                            $"currSubject1 = '{updatedStudent.GetCurrentSubject1()}', " +
+                                            $"currSubject2 = '{updatedStudent.GetCurrentSubject2()}', " +
+                                            $"prevSubject1 = '{updatedStudent.GetPreviousSubject1()}', " +
+                                            $"prevSubject2 = '{updatedStudent.GetPreviousSubject2()}' " +
+                                            $"WHERE UserId = '{id}'";
+
+                // Execute the update queries
+                database.ExecuteNonQuery(updateQueryUser);
                 database.ExecuteNonQuery(updateQueryStudent);
             }
             catch (Exception ex)
@@ -148,6 +166,7 @@ namespace comp1551
                 database.CloseConnection();
             }
         }
+
 
 
         public void DeleteStudent(int id)
@@ -250,36 +269,38 @@ namespace comp1551
             {
                 database.OpenConnection();
 
-                string query = "SELECT u.Id, u.Name, u.Email, u.Telephone, f.Name AS FacultyName, c.Name AS ClassName, " +
-                               "s.currSubject1 AS CurrSubject1, s.currSubject2 AS CurrSubject2, " +
-                               "s.prevSubject1 AS PrevSubject1, s.prevSubject2 AS PrevSubject2 " +
-                               "FROM User u " +
-                               "JOIN Student s ON u.Id = s.UserId " +
-                               "LEFT JOIN Faculty f ON s.FacultyId = f.Id " +
-                               "LEFT JOIN Class c ON s.ClassId = c.Id " +
-                               "WHERE u.Role = 'student'";
+                string query = "SELECT u.Id, u.Name, u.Email, u.Telephone, u.Role, f.Name AS FacultyName, c.Name AS ClassName,    s.currSubject1 AS CurrSubject1, s.currSubject2 AS CurrSubject2,      s.prevSubject1 AS PrevSubject1, s.prevSubject2 AS PrevSubject2 FROM User u        JOIN Student s ON u.Id = s.UserId        LEFT JOIN Faculty f ON s.FacultyId = f.Id       LEFT JOIN Class c ON s.ClassId = c.Id             WHERE u.Role = 'student'";
 
                 DataTable dataTable = database.ExecuteQuery(query);
 
+
+
+
+
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    StudentClass student = new StudentClass
+                    string roleString = row["Role"].ToString().ToLower();
+                    if (Enum.TryParse<UserRole>(roleString, true, out UserRole role))
                     {
-                        Id = Convert.ToInt32(row["Id"]),
-                        Name = row["Name"].ToString(),
-                        Email = row["Email"].ToString(),
-                        Telephone = row["Telephone"].ToString(),
-                    };
+                        StudentClass student = new StudentClass
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            Name = row["Name"].ToString(),
+                            Email = row["Email"].ToString(),
+                            Role = role,
+                            Telephone = row["Telephone"].ToString(),
+                        };
 
-                    // Use the setter methods to set the additional properties
-                    student.SetFacultyName(row["FacultyName"].ToString());
-                    student.SetClassName(row["ClassName"].ToString());
-                    student.SetCurrentSubject1(row["CurrSubject1"].ToString());
-                    student.SetCurrentSubject2(row["CurrSubject2"].ToString());
-                    student.SetPreviousSubject1(row["PrevSubject1"].ToString());
-                    student.SetPreviousSubject2(row["PrevSubject2"].ToString());
+                        // Use the setter methods to set the additional properties
+                        student.SetFacultyName(row["FacultyName"].ToString());
+                        student.SetClassName(row["ClassName"].ToString());
+                        student.SetCurrentSubject1(row["CurrSubject1"].ToString());
+                        student.SetCurrentSubject2(row["CurrSubject2"].ToString());
+                        student.SetPreviousSubject1(row["PrevSubject1"].ToString());
+                        student.SetPreviousSubject2(row["PrevSubject2"].ToString());
 
-                    students.Add(student);
+                        students.Add(student);
+                    }
                 }
             }
             catch (Exception ex)
@@ -341,6 +362,56 @@ namespace comp1551
             }
 
             return students;
+        }
+
+        public List<StudentClass> GetAllStudentSearch(string searchText)
+        {
+            List<StudentClass> users = new List<StudentClass>();
+            try
+            {
+                database.OpenConnection();
+                // construct the sql query with a WHERE clause to filter by name or email
+                string query = $"SELECT * FROM user WHERE role = 'student' AND name LIKE '%{searchText}%'";
+
+                DataTable dataTable = database.ExecuteQuery(query);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    // convert the role value to lowercase for consistency
+                    string roleString = row["Role"].ToString().ToLower();
+
+                    // parse the lowercase role string to the UserRole enum
+                    if (Enum.TryParse<UserRole>(roleString, true, out UserRole role))
+                    {
+                        // create a user object based on the data retrieved from the database
+                        StudentClass user = new StudentClass
+                        {
+                            Id = Convert.ToInt32(row["Id"]),
+                            Name = row["Name"].ToString(),
+                            Email = row["Email"].ToString(),
+                            Telephone = row["Telephone"].ToString(),
+                            Role = role
+                        };
+
+                        users.Add(user);
+                    }
+                    else
+                    {
+                        // handle case where role string doesn't match any enum value
+                        MessageBox.Show($"Error: Invalid role value '{roleString}' for user with ID {row["Id"]}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                database.CloseConnection();
+            }
+
+            return users;
         }
     }
 }

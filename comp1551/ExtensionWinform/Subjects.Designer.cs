@@ -64,6 +64,7 @@
             // 
             // txtCurrentSubject1
             // 
+            txtCurrentSubject1.Enabled = false;
             txtCurrentSubject1.Location = new Point(419, 190);
             txtCurrentSubject1.Name = "txtCurrentSubject1";
             txtCurrentSubject1.Size = new Size(150, 31);
@@ -71,6 +72,7 @@
             // 
             // txtCurrentSubject2
             // 
+            txtCurrentSubject2.Enabled = false;
             txtCurrentSubject2.Location = new Point(775, 190);
             txtCurrentSubject2.Name = "txtCurrentSubject2";
             txtCurrentSubject2.Size = new Size(150, 31);
@@ -87,6 +89,7 @@
             // 
             // txtPrevSubject2
             // 
+            txtPrevSubject2.Enabled = false;
             txtPrevSubject2.Location = new Point(775, 264);
             txtPrevSubject2.Name = "txtPrevSubject2";
             txtPrevSubject2.Size = new Size(150, 31);
@@ -103,6 +106,7 @@
             // 
             // txtPrevSubject1
             // 
+            txtPrevSubject1.Enabled = false;
             txtPrevSubject1.Location = new Point(419, 264);
             txtPrevSubject1.Name = "txtPrevSubject1";
             txtPrevSubject1.Size = new Size(150, 31);
@@ -119,6 +123,7 @@
             // 
             // txtSubject2
             // 
+            txtSubject2.Enabled = false;
             txtSubject2.Location = new Point(775, 337);
             txtSubject2.Name = "txtSubject2";
             txtSubject2.Size = new Size(150, 31);
@@ -135,6 +140,7 @@
             // 
             // txtSubject1
             // 
+            txtSubject1.Enabled = false;
             txtSubject1.Location = new Point(419, 337);
             txtSubject1.Name = "txtSubject1";
             txtSubject1.Size = new Size(150, 31);

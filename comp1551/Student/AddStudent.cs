@@ -1,4 +1,5 @@
 ﻿using comp1551.Teacher;
+using comp1551.User;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,17 @@ namespace comp1551.Student
         private byte[] fileName; // A byte array to store the image data
         public int studentId; // ID of the student
         public string lbl; // Label for the form
+        private byte[] imageBytes; // a byte array to store the img data
+
+
+        byte[] ImageToByteList(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
 
         // this func will be execeuted when the user clicks Upload link label
         private void linkLblUpload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -200,6 +212,20 @@ namespace comp1551.Student
         // this func will be execeuted when the user clicks add btn
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
+            // Check if the student name, email, and telephone fields are empty
+            if (string.IsNullOrWhiteSpace(txtAddStudentName.Text) ||
+                string.IsNullOrWhiteSpace(txtAddStudentEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtAddStudentTelephone.Text) ||
+                string.IsNullOrWhiteSpace(txtAddStudentSubject1.Text) ||
+                string.IsNullOrWhiteSpace(txtAddStudentSubject2.Text) ||
+                string.IsNullOrWhiteSpace(txtAddStudentPrevSubject1.Text) ||
+                string.IsNullOrWhiteSpace(txtAddStudentPrevSubject2.Text) 
+                )
+            {
+                MessageBox.Show("Please fill in all the required fields.");
+                return;
+            }
+
             // Initialize base64Image as null. It will be used to store the base64 string of the image if any.
             string base64Image = null;
 
@@ -208,6 +234,12 @@ namespace comp1551.Student
             {
                 // Convert the background image to a base64 string.
                 base64Image = ConvertImageToBase64(pictureboxAddStudent.BackgroundImage);
+            }
+
+            if (!IsValidEmail(txtAddStudentEmail.Text) || !IsValidPhoneNumber(txtAddStudentTelephone.Text))
+            {
+                MessageBox.Show("Please enter valid email or phone");
+                return;
             }
 
             // handling for adding a new student.
@@ -233,7 +265,6 @@ namespace comp1551.Student
                             Email = txtAddStudentEmail.Text,
                             Telephone = txtAddStudentTelephone.Text,
                         };
-                        newStudent.SetImage(base64Image);
 
                         // Set values using setter methods
                         newStudent.SetPreviousSubject1(txtAddStudentPrevSubject1.Text);
@@ -242,21 +273,25 @@ namespace comp1551.Student
                         newStudent.SetCurrentSubject2(txtAddStudentSubject2.Text);
                         newStudent.SetFacultyId(selectedFaculty.Key);
                         newStudent.SetClassId(selectedClass.Key);
+                        newStudent.SetImage(base64Image);
 
 
-                        // assuming you have a method to add a student in your system, it's called here.
                         UoGSystem system = new UoGSystem();
                         system.StudentManage.AddStudent(newStudent);
-
+                        ClearForm();
                         StudentDetails studentDetailsForm = Application.OpenForms["StudentDetails"] as StudentDetails;
                         studentDetailsForm?.LoadStudentData();
-
-                        MessageBox.Show("Student added successfully.");
-                        ClearForm();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error adding student: {ex.Message}");
+                    }
+                    finally
+                    {
+                        StudentDetails studentDetailsForm = Application.OpenForms["StudentDetails"] as StudentDetails;
+                        studentDetailsForm?.LoadStudentData();
+                        UserDetails userDetailForm = Application.OpenForms["UserDetails"] as UserDetails;
+                        userDetailForm?.LoadUserData("user");
                     }
                 }
             }
@@ -275,12 +310,11 @@ namespace comp1551.Student
 
                     try
                     {
+                        imageBytes = pictureboxAddStudent.BackgroundImage != null ? ImageToByteList(pictureboxAddStudent.BackgroundImage) : null;
+
                         // check if the base64Image is null and loadedImage is not null
-                        if (base64Image == null && loadedImage != null)
-                        {
-                            // Convert the loadedImage to base64
-                            base64Image = ConvertImageToBase64(loadedImage);
-                        }
+                        base64Image = imageBytes != null ? Convert.ToBase64String(imageBytes) : null;
+
 
                         // create an updated StudentClass instance with new data.
                         StudentClass updatedStudent = new StudentClass
@@ -289,7 +323,6 @@ namespace comp1551.Student
                             Email = txtAddStudentEmail.Text,
                             Telephone = txtAddStudentTelephone.Text,
                         };
-                        updatedStudent.SetImage(base64Image);
 
                         // Set values using setter methods
                         updatedStudent.SetPreviousSubject1(txtAddStudentPrevSubject1.Text);
@@ -298,13 +331,13 @@ namespace comp1551.Student
                         updatedStudent.SetCurrentSubject2(txtAddStudentSubject2.Text);
                         updatedStudent.SetFacultyId(selectedFaculty.Key);
                         updatedStudent.SetClassId(selectedClass.Key);
+                        updatedStudent.SetImage(base64Image);
 
 
                         // Assuming you have a method to update a student in your system, it's called here.
                         UoGSystem system = new UoGSystem();
                         system.StudentManage.UpdateStudent(studentId, updatedStudent);
 
-                        MessageBox.Show("Student information updated successfully.");
                         this.Close();
 
                         StudentDetails studentDetailsForm = Application.OpenForms["StudentDetails"] as StudentDetails;
@@ -313,6 +346,11 @@ namespace comp1551.Student
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error updating student information: {ex.Message}");
+                    }
+                    finally
+                    {
+                        StudentDetails studentDetailsForm = Application.OpenForms["StudentDetails"] as StudentDetails;
+                        studentDetailsForm?.LoadStudentData();
                     }
                 }
             }

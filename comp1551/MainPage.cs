@@ -26,12 +26,6 @@ namespace comp1551
         // create a global variable for checking which role the current logged in user is
         public string userRole;
 
-        // Method to open child forms as modeless dialogs
-        private void OpenChildForm(Form childForm)
-        {
-            childForm.ShowDialog(); // Show the child form as a modeless dialog
-        }
-
         // Event handler for "Student" button click
         private void btnStudent_Click(object sender, EventArgs e)
         {
@@ -115,7 +109,7 @@ namespace comp1551
             {
                 MessageBox.Show("Main form not found.");
             }
-           // OpenChildForm(new TeacherDetails()); // Open the TeacherDetails form as a child
+            // OpenChildForm(new TeacherDetails()); // Open the TeacherDetails form as a child
         }
 
         // Event handler for "Faculty" button click
@@ -144,7 +138,7 @@ namespace comp1551
             {
                 MessageBox.Show("Main form not found.");
             }
-           // OpenChildForm(new Setting()); // Open the Setting form as a child
+            // OpenChildForm(new Setting()); // Open the Setting form as a child
         }
 
         // when the form first loaded, it check every conditions below, to make changes to the Mainpage winform.
@@ -156,12 +150,15 @@ namespace comp1551
             if (userRole == "student")
             {
                 btnTeacher.Visible = false;
-                btnClass.Width = 286;
+                btnClass.Width = 326;
                 btnSalary.Visible = false;
-                btnTest.Width = 286;
+                linkLabelUsers.Visible = false;
+
+                btnTest.Width = 323;
             }
             if (userRole == "teacher")
             {
+                linkLabelUsers.Visible = false;
 
             }
             if (userRole == "admin")
@@ -181,7 +178,9 @@ namespace comp1551
             {
                 MessageBox.Show("Main form not found.");
             }
-           // OpenChildForm(new UserDetails()); // open userDetails winform
+            // OpenChildForm(new UserDetails()); // open userDetails winform
         }
+
+        
     }
 }

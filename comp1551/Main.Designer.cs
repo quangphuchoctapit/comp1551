@@ -141,7 +141,7 @@
             // lblHello
             // 
             lblHello.AutoSize = true;
-            lblHello.Location = new Point(1317, 23);
+            lblHello.Location = new Point(304, 24);
             lblHello.Name = "lblHello";
             lblHello.Size = new Size(62, 25);
             lblHello.TabIndex = 5;
@@ -152,7 +152,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.Chocolate;
-            lblUsername.Location = new Point(1370, 19);
+            lblUsername.Location = new Point(357, 20);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(70, 30);
             lblUsername.TabIndex = 0;

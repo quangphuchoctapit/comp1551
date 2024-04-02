@@ -66,7 +66,26 @@ namespace comp1551.Salary
         // this func will be executed when the user clicks confirm btn
         private void btnConfirmAdminSalary_Click(object sender, EventArgs e)
         {
-            decimal salary = Convert.ToDecimal(txtAdminSalary.Text);
+            // Check if Salary textbox is empty
+            if (string.IsNullOrWhiteSpace(txtAdminSalary.Text))
+            {
+                MessageBox.Show("Please enter a salary.");
+                return;
+            }
+
+            // Parse the salary value
+            if (!decimal.TryParse(txtAdminSalary.Text, out decimal salary))
+            {
+                MessageBox.Show("Please enter a valid salary.");
+                return;
+            }
+
+            // Check if the entered salary is negative
+            if (salary < 0)
+            {
+                MessageBox.Show("Salary cannot be negative. Please enter a positive value.");
+                return;
+            }
 
             try
             {
@@ -83,7 +102,7 @@ namespace comp1551.Salary
             }
             catch (Exception ex)
             {
-                // hadnling exceptions, e.g., display error message
+                // handling exceptions, e.g., display error message
                 MessageBox.Show($"Error updating admin salary: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -91,6 +110,7 @@ namespace comp1551.Salary
                 db.CloseConnection();
             }
         }
+
 
 
     }

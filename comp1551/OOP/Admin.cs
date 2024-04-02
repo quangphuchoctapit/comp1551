@@ -7,6 +7,10 @@ namespace comp1551
     // derived class representing admin
     public class AdminClass : UserClass
     {
+        public override void View()
+        {
+
+        }
         private decimal Salary { get; set; }
         private bool FullTime { get; set; }
         private int WorkingHours { get; set; }
@@ -50,8 +54,8 @@ namespace comp1551
                     {
 
                         // Insert new user into the database with the role 'admin'
-                        string insertUserQuery = "INSERT INTO User (Name, Telephone, Email, Role, Image) " +
-                                                  "VALUES ('', '', '', 'admin', '')";
+                        string insertUserQuery = "INSERT INTO User (Name, Telephone, Email, Role, Image, password) " +
+                                                  "VALUES ('admin', '0000000000', 'admin@gmail.com', 'admin', '', '0000000000')";
 
                         // execute the insert query for the user
                         database.ExecuteNonQuery(insertUserQuery);

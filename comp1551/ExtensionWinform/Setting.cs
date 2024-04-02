@@ -63,9 +63,9 @@ namespace comp1551.ExtensionWinform
         // this func is executed when the user click subjects button
         private void btnSubject_Click(object sender, EventArgs e)
         {
-          /*  this.Close();
-            mainForm.loadForm(new Subjects()); // Use the loadForm method of the Main form
-*/
+            /*  this.Close();
+              mainForm.loadForm(new Subjects()); // Use the loadForm method of the Main form
+  */
             if (mainForm != null)
             {
                 mainForm.loadForm(new Subjects());
@@ -73,6 +73,14 @@ namespace comp1551.ExtensionWinform
             else
             {
                 MessageBox.Show("Main form not found.");
+            }
+        }
+
+        private void Setting_Load(object sender, EventArgs e)
+        {
+            if (GlobalVariables.UserRole == "admin")
+            {
+                btnSubject.Visible = false;
             }
         }
     }
