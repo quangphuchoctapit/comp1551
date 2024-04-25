@@ -14,7 +14,10 @@ namespace comp1551
 
         public override void View()
         {
-
+            // view() of this class will be different to other view() from other classes
+            // but in this case, I do not do anything here because View() method for student
+            // will be overriden in StudentManage below.
+            // for instance, this View() can be used to get all student data, like getAllStudent() method below 
         }
         //   public override string Role { get; set; }
 
@@ -67,7 +70,7 @@ namespace comp1551
 
         public override void View()
         {
-            List<StudentClass> teachers = GetAllStudents();
+            List<StudentClass> students = GetAllStudents();
         }
 
         // Student CRUD operations

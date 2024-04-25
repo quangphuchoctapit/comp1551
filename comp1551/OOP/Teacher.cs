@@ -11,7 +11,10 @@ namespace comp1551
     {
         public override void View()
         {
-
+            // view() of this class will be different to other view() from other classes
+            // but in this case, I do not do anything here because View() method for teacher
+            // will be overriden in TeacherManage below.
+            // for instance, this View() can be used to get all teacher data, like getAllTeacher() method below 
         }
 
         private decimal Salary;

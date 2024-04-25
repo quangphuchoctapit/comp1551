@@ -24,8 +24,6 @@ namespace comp1551
         public  string Email { get; set; }
         public  UserRole Role { get; set; }
 
-
-
         public abstract void View();
 
         public class UoGSystem

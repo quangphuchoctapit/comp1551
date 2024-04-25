@@ -9,7 +9,12 @@ namespace comp1551
     {
         public override void View()
         {
-
+            // view() of this class will be different to other view() from other classes
+            // but in this case, I do not do anything here because I View() method for admin
+            // will be overriden in AdminManage below.
+            // for instance, this View() can be used to get all admin data
+            // but I since there is a simple app, so there is only 1 admin
+            // so I will not do anything to this View() method for class AdminClass
         }
         private decimal Salary { get; set; }
         private bool FullTime { get; set; }
@@ -24,13 +29,17 @@ namespace comp1551
         public void SetWorkingHours(int value) => WorkingHours = value;
     }
 
-    public class AdminManage {
+    public class AdminManage : UserClass {
 
         private Database database;
 
         public AdminManage(Database db)
         {
             database = db;
+        }
+
+        public override void View()
+        {
         }
 
         // method to insert admin if not already inserted
